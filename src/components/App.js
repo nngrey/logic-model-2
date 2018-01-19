@@ -21,30 +21,21 @@ export default class App extends React.Component {
     const appState = this.props.mappedAppState;
     return(
       <div>
-      <Navbar inverse  collapseOnSelect className="customNav">
-    <Navbar.Header>
-      <Navbar.Brand>
-        <a href="/#">Home</a>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-
-    </Navbar.Collapse>
-  </Navbar>
-  <div className="container">
-
-  { /* Each Smaller Components */}
-   {this.props.children}
-   <div>
-     <button className="add-note" onClick={this.addNote} >+</button>
-     <Notes
-       fetchNotes={this.props.mappedFetchNotes}
-       onDelete={this.deleteNote}
-       />
-   </div>
-  </div>
- </div>
+        <Navbar inverse  collapseOnSelect className="customNav">
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="/#">Home</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+        </Navbar>
+        <div className="container">
+          {this.props.children}
+          <button className="add-note" onClick={this.addNote} >+</button>
+         <Notes
+           fetchNotes={this.props.mappedFetchNotes}
+           />
+        </div>
+      </div>
     );
   }
 }
