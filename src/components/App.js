@@ -1,9 +1,7 @@
 import React from 'react';
-import { Navbar,Nav,NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import './App.css';
 import Notes from './Notes';
-import Editable from './Editable';
 
 export default class App extends React.Component {
   constructor(props){
@@ -18,7 +16,6 @@ export default class App extends React.Component {
   }
 
   render(){
-    const appState = this.props.mappedAppState;
     return(
       <div>
         <Navbar inverse  collapseOnSelect className="customNav">

@@ -4,9 +4,9 @@ import Editable from './Editable';
 import '../styles/Notes.css';
 
 export default class Notes extends React.Component {
-  constructor(props){
-    super(props);
-  }
+  // constructor(props){
+  //   super(props);
+  // }
 
   componentWillMount(){
     this.props.fetchNotes();
