@@ -13,6 +13,10 @@ export default class Notes extends React.Component {
     this.props.fetchNotes();
   }
 
+  deleteNote(noteToDelete){
+    this.props.mappedDeleteNote(noteToDelete);
+  }
+
   render(){
     const noteState = this.props.mappedNoteState;
     // console.log("************");
@@ -27,7 +31,7 @@ export default class Notes extends React.Component {
                <Editable
                editing={note.editing}
                value={note.noteText}/>
-              <button className="delete">x</button>
+              <button className="delete" onClick={() => this.deleteNote(note)}>x</button>
              </Note>
            </li>
         )}
