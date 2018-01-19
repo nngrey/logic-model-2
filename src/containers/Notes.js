@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     //you can now say this.props.mappedAppActions
     fetchNotes: () => dispatch(noteActions.fetchNotes()),
     mappedEditingNote: note => dispatch(noteActions.editingNote(note)),
-    mappedEditNote: noteToEdit => dispatch(noteActions.editNote(noteToEdit)),
+    mappedEditNote: (id, value) => dispatch(noteActions.editNote(id, value)),
     // mappedshowEditModal: noteToEdit => dispatch(noteActions.showEditModal(noteToEdit)),
     // mappedhideEditModal: () => dispatch(noteActions.hideEditModal()),
     mappedDeleteNote: noteToDelete => dispatch(noteActions.deleteNote(noteToDelete)),

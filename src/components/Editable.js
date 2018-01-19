@@ -8,7 +8,8 @@ const Editable = (props) => {
     return <Edit
     className={props.className}
     value={props.value}
-    onEdit={props.onEdit} />;
+    onEdit={props.onEdit}
+    id={props.id} />;
   }
 
   return <span className={classnames('value', props.className)}>{props.value}</span>;
@@ -38,7 +39,10 @@ class Edit extends Component {
     const value = e.target.value;
 
     if(this.props.onEdit) {
-      this.props.onEdit(value);
+      const data = new FormData();
+      data.append('noteText', value);
+      data.append('id', this.props.id)
+      this.props.onEdit(data);
     }
   }
 }

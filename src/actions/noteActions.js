@@ -92,13 +92,16 @@ export const fetchNotesFailed = (error) => {
   }
 }
 
-export const editNote = (note) => {
-  console.log(note);
+export const editNote = (id, value) => {
+  console.log("!!!!!!!");
+  console.log(id);
+  console.log(value);
+
     return (dispatch) => {
-      dispatch(editNoteRequest(note));
+      dispatch(editNoteRequest(id));
       return fetch(apiUrl, {
         method:'put',
-        body:note
+        body:id
       }).then(response => {
         if(response.ok){
           response.json().then(data => {
@@ -121,10 +124,10 @@ export const editingNote = (note) => {
    }
 }
 
-export const editNoteRequest = (note) => {
+export const editNoteRequest = (id) => {
    return {
      type:'EDIT_NOTE_REQUEST',
-     note
+     id
    }
 }
 

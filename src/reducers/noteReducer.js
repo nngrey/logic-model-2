@@ -176,6 +176,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           }
 
     case 'EDIT_NOTE_SUCCESS':
+         action.note.editing = false;
          const updatedNotes = currentState.notes.map((note) => {
            if(note._id !== action.note._id){
              //This is not the item we care about, keep it as is
@@ -187,7 +188,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           return {
             ...currentState,
             notes:updatedNotes,
-            note:null,
+            note:action.note,
             isFetching: false,
             error: null,
             successMsg:action.message,

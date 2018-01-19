@@ -20,25 +20,27 @@ export default class Notes extends React.Component {
     this.props.mappedEditingNote(noteToEdit);
   }
 
-  editNote(noteToEdit){
-    this.props.mappedEditNote(noteToEdit);
-  }
+  // editNote(noteToEdit){
+  //   this.props.mappedEditNote(noteToEdit);
+  // }
 
   render(){
     const noteState = this.props.mappedNoteState;
     // console.log("************");
     // console.log(noteState);
     const notes = (typeof noteState !== 'undefined') ? noteState.notes : [];
+    console.log(notes);
     // const notes = [{task: "Go shopping", id: 1}];
     return (
       <ul className="notes">
         {notes.map((note) =>
-          <li key={note.id}>
-             <Note className="note" >
+          <li key={note._id}>
+             <Note className="note" onClick={() => this.editingNote(note)}>
                <Editable
                  editing={note.editing}
                  value={note.noteText}
-                 onEdit={() => this.editNote(note)} />
+                 onEdit={this.props.mappedEditNote}
+                 id={note._id}/>
               <button className="delete" onClick={() => this.deleteNote(note)}>x</button>
              </Note>
            </li>
