@@ -215,6 +215,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
         }
 
   case 'DELETE_NOTE_REQUEST':
+        action.note.editing = false;
         return {
           ...currentState,
           notes:currentState.notes,
@@ -230,7 +231,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
         }
 
   case 'DELETE_NOTE_SUCCESS':
-  const filteredNotes = currentState.notes.filter((note) => note._id !== currentState.noteToDelete._id)
+        const filteredNotes = currentState.notes.filter((note) => note._id !== currentState.note._id)
         return {
           ...currentState,
           notes:filteredNotes,
@@ -260,37 +261,6 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           // noteToEdit: null,
           newNote: null
         }
-
-  case 'SHOW_DELETE_MODAL':
-        return {
-          ...currentState,
-          notes:currentState.notes,
-          note:null,
-          isFetching: false,
-          error: null,
-          successMsg:null,
-          // showDeleteModal: true,
-          noteToDelete: action.note,
-          // showEditModal: false,
-          // noteToEdit: null,
-          newNote: null
-        }
-
-  case 'HIDE_DELETE_MODAL':
-        return {
-          ...currentState,
-          notes:currentState.notes,
-          note:null,
-          isFetching: false,
-          error: null,
-          successMsg:null,
-          // showDeleteModal: false,
-          noteToDelete: null,
-          // showEditModal: false,
-          // noteToEdit: null,
-          newNote: null
-        }
-
 
     default:
        return currentState;

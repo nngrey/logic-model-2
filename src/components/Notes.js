@@ -29,7 +29,6 @@ export default class Notes extends React.Component {
     // console.log("************");
     // console.log(noteState);
     const notes = (typeof noteState !== 'undefined') ? noteState.notes : [];
-    console.log(notes);
     // const notes = [{task: "Go shopping", id: 1}];
     return (
       <ul className="notes">

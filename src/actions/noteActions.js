@@ -2,7 +2,7 @@
 
 const apiUrl = "/api/";
 
-export const addNewNote = (note) => {console.log("***"+note)
+export const addNewNote = (note) => {
   return (dispatch) => {
     dispatch(addNewNoteRequest(note));
     return fetch(apiUrl, {
@@ -93,10 +93,6 @@ export const fetchNotesFailed = (error) => {
 }
 
 export const editNote = (id, value) => {
-  console.log("!!!!!!!");
-  console.log(id);
-  console.log(value);
-
     return (dispatch) => {
       dispatch(editNoteRequest(id));
       return fetch(apiUrl, {
