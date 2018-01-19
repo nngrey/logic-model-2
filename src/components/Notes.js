@@ -1,7 +1,7 @@
 import React from 'react';
 import Note from './Note';
 import Editable from './Editable';
-// import '../styles/Notes.css';
+import '../styles/Notes.css';
 
 export default class Notes extends React.Component {
   constructor(props){
@@ -9,12 +9,19 @@ export default class Notes extends React.Component {
   }
 
   componentWillMount(){
-    // console.log(this.props);
     this.props.fetchNotes();
   }
 
   deleteNote(noteToDelete){
     this.props.mappedDeleteNote(noteToDelete);
+  }
+
+  editingNote(noteToEdit){
+    this.props.mappedEditingNote(noteToEdit);
+  }
+
+  editNote(noteToEdit){
+    this.props.mappedEditNote(noteToEdit);
   }
 
   render(){
@@ -29,8 +36,9 @@ export default class Notes extends React.Component {
           <li key={note.id}>
              <Note className="note" >
                <Editable
-               editing={note.editing}
-               value={note.noteText}/>
+                 editing={note.editing}
+                 value={note.noteText}
+                 onEdit={() => this.editNote(note)} />
               <button className="delete" onClick={() => this.deleteNote(note)}>x</button>
              </Note>
            </li>

@@ -24,7 +24,6 @@ export const addNewNote = (note) => {console.log("***"+note)
 }
 
 export const addNewNoteRequest = (note) => {
-  console.log("+++"+ note)
   return {
     type: 'ADD_NEW_NOTE_REQUEST',
     note
@@ -55,20 +54,18 @@ export const fetchNotes = () => {
     dispatch(fetchNotesRequest());
     // Returns a promise
     return fetch(apiUrl)
-                .then(response => {
-                  if(response.ok){
-                    response.json().then(data => {
-                      dispatch(fetchNotesSuccess(data.notes,data.message));
-                    })
-                  }
-                  else{
-                    response.json().then(error => {
-                      dispatch(fetchNotesFailed(error));
-                    })
-                  }
-                })
-
-
+      .then(response => {
+        if(response.ok){
+          response.json().then(data => {
+            dispatch(fetchNotesSuccess(data.notes,data.message));
+          })
+        }
+        else{
+          response.json().then(error => {
+            dispatch(fetchNotesFailed(error));
+          })
+        }
+      })
   }
 }
 
@@ -77,7 +74,6 @@ export const fetchNotesRequest = () => {
     type:'FETCH_NOTES_REQUEST'
   }
 }
-
 
 //Sync action
 export const fetchNotesSuccess = (notes,message) => {
@@ -96,106 +92,56 @@ export const fetchNotesFailed = (error) => {
   }
 }
 
-// export const fetchTodoById = (todoId) => {
-//   return (dispatch) => {
-//     dispatch(fetchTodoRequest());
-//       // Returns a promise
-//       return fetch(apiUrl + todoId)
-//              .then(response => {console.log(response)
-//                if(response.ok){
-//                  response.json().then(data => {
-//                    dispatch(fetchTodoSuccess(data.todo[0], data.message));
-//                  })
-//                }
-//                else{
-//                  response.json().then(error => {
-//                    dispatch(fetchTodoFailed(error));
-//                  })
-//                }
-//              })
-//
-//   }
-// }
-//
-// export const fetchTodoRequest = () => {
-//   return {
-//     type:'FETCH_TODO_REQUEST'
-//   }
-// }
+export const editNote = (note) => {
+  console.log(note);
+    return (dispatch) => {
+      dispatch(editNoteRequest(note));
+      return fetch(apiUrl, {
+        method:'put',
+        body:note
+      }).then(response => {
+        if(response.ok){
+          response.json().then(data => {
+            dispatch(editNoteSuccess(data.note,data.message));
+          })
+        }
+        else{
+          response.json().then(error => {
+            dispatch(editNoteFailed(error));
+          })
+        }
+      })
+    }
+}
 
+export const editingNote = (note) => {
+   return {
+     type:'EDITING_NOTE',
+     note
+   }
+}
 
-//Sync action
-// export const fetchTodoSuccess = (todo,message) => {
-//   return {
-//     type: 'FETCH_TODO_SUCCESS',
-//     todo: todo,
-//     message: message,
-//     receivedAt: Date.now
-//   }
-// }
-//
-// export const fetchTodoFailed = (error) => {
-//   return {
-//     type:'FETCH_TODO_FAILED',
-//     error
-//   }
-// }
+export const editNoteRequest = (note) => {
+   return {
+     type:'EDIT_NOTE_REQUEST',
+     note
+   }
+}
 
-// export const showEditModal = (todoToEdit) => {
-//   return {
-//     type:'SHOW_EDIT_MODAL',
-//     todo:todoToEdit
-//   }
-// }
-//
-// export const hideEditModal = () => {
-//   return {
-//     type:'HIDE_EDIT_MODAL'
-//   }
-// }
-//
-// export const editTodo = (todo) => {
-//     return (dispatch) => {
-//       dispatch(editTodoRequest(todo));
-//       return fetch(apiUrl, {
-//         method:'put',
-//         body:todo
-//       }).then(response => {
-//         if(response.ok){
-//           response.json().then(data => {
-//             dispatch(editTodoSuccess(data.todo,data.message));
-//           })
-//         }
-//         else{
-//           response.json().then(error => {
-//             dispatch(editTodoFailed(error));
-//           })
-//         }
-//       })
-//     }
-// }
-//
-// export const editTodoRequest = (todo) => {
-//    return {
-//      type:'EDIT_TODO_REQUEST',
-//      todo
-//    }
-// }
-//
-// export const editTodoSuccess = (todo,message) => {
-//   return {
-//     type:'EDIT_TODO_SUCCESS',
-//     todo:todo,
-//     message:message
-//   }
-// }
-//
-// export const editTodoFailed = (error) => {
-//   return {
-//     type:'EDIT_TODO_FAILED',
-//     error
-//   }
-// }
+export const editNoteSuccess = (note,message) => {
+  return {
+    type:'EDIT_NOTE_SUCCESS',
+    note:note,
+    message:message
+  }
+}
+
+export const editNoteFailed = (error) => {
+  return {
+    type:'EDIT_NOTE_FAILED',
+    error
+  }
+}
 
 export const deleteNote = (note) => {
   return (dispatch) => {
@@ -238,16 +184,3 @@ export const deleteNoteFailed = (error) => {
     error
   }
 }
-
-// export const showDeleteModal = (todoToDelete) => {
-//   return {
-//     type:'SHOW_DELETE_MODAL',
-//     todo:todoToDelete
-//   }
-// }
-//
-// export const hideDeleteModal = () => {
-//   return {
-//     type:'HIDE_DELETE_MODAL'
-//   }
-// }

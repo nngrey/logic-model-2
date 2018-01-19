@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-// import '../styles/Editable.css';
+import '../styles/Editable.css';
 
 // ({editing, value, onEdit, className, ...props})
 const Editable = (props) => {

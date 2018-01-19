@@ -144,35 +144,21 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           }
         return nextState;
 
-  case 'SHOW_EDIT_MODAL':
-        return {
-          ...currentState,
-          notes:currentState.notes,
-          note:null,
-          isFetching: false,
-          error: null,
-          successMsg:null,
-          // showDeleteModal: false,
-          noteToDelete: null,
-          // showEditModal: true,
-          // noteToEdit: action.note,
-          newNote: null
-        }
-
-  case 'HIDE_EDIT_MODAL':
-        return {
-          ...currentState,
-          notes:currentState.notes,
-          note:null,
-          isFetching: false,
-          error: null,
-          successMsg:null,
-          // showDeleteModal: false,
-          noteToDelete: null,
-          // showEditModal: false,
-          // noteToEdit: null,
-          newNote: null
-        }
+    case 'EDITING_NOTE':
+      action.note.editing = true;
+      return {
+        ...currentState,
+        notes:currentState.notes,
+        note: action.note,
+        isFetching: true,
+        error: null,
+        successMsg:null,
+        // showDeleteModal: false,
+        noteToDelete: null,
+        // showEditModal: true,
+        // noteToEdit: action.note,
+        newNote: null
+      }
 
     case 'EDIT_NOTE_REQUEST':
           return {

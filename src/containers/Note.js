@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedfetchNoteById: noteId => dispatch(noteActions.fetchNoteById(noteId))
+    // mappedfetchNoteById: noteId => dispatch(noteActions.fetchNoteById(noteId))
   }
 }
 
