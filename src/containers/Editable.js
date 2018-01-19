@@ -1,4 +1,3 @@
-// ./react-redux-client/src/containers/Notes.js
 import { connect } from 'react-redux';
 import * as noteActions from '../actions/noteActions';
 import Notes from '../components/Notes';
@@ -18,11 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchNotes: () => dispatch(noteActions.fetchNotes()),
     mappedEditingNote: note => dispatch(noteActions.editingNote(note)),
     mappedEditNote: noteToEdit => dispatch(noteActions.editNote(noteToEdit)),
-    // mappedshowEditModal: noteToEdit => dispatch(noteActions.showEditModal(noteToEdit)),
-    // mappedhideEditModal: () => dispatch(noteActions.hideEditModal()),
     mappedDeleteNote: noteToDelete => dispatch(noteActions.deleteNote(noteToDelete)),
-    // mappedshowDeleteModal: noteToDelete => dispatch(noteActions.showDeleteModal(noteToDelete)),
-    // mappedhideDeleteModal: () => dispatch(noteActions.hideDeleteModal())
   }
 }
 

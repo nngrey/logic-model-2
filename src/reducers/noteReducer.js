@@ -4,11 +4,8 @@ const INITIAL_STATE = {
   note:null,
   isFetching: false,
   error: null,
-  successMsg:null,
-  // showDeleteModal: false,
+  successMsg: null,
   noteToDelete: null,
-  // showEditModal: false,
-  // noteToEdit: null,
   newNote: null
 }
 
@@ -22,10 +19,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: true,
             error: null,
             successMsg:null,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
           }
 
     case 'FETCH_NOTES_SUCCESS':
@@ -36,10 +30,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: false,
             error: null,
             successMsg:action.message,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
           }
 
     case 'FETCH_NOTES_FAILED':
@@ -50,10 +41,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: false,
             error: action.error,
             successMsg:null,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
           }
 
     case 'FETCH_NOTE_REQUEST':
@@ -64,10 +52,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: true,
             error: null,
             successMsg:null,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
           }
 
     case 'FETCH_NOTE_SUCCESS':
@@ -78,10 +63,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: false,
             error: null,
             successMsg:action.message,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
           }
 
     case 'FETCH_NOTE_FAILED':
@@ -92,10 +74,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: false,
             error: action.error,
             successMsg:null,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
           }
 
     case 'ADD_NEW_NOTE_REQUEST':
@@ -106,10 +85,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: true,
             error: null,
             successMsg:null,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
             newNote: action.note
           }
 
@@ -121,10 +97,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: true,
             error: action.error,
             successMsg:null,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
             newNote: null
           }
 
@@ -136,10 +109,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: false,
             error: null,
             successMsg:action.message,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: false,
-            // noteToEdit: null,
             newNote: action.note
           }
         return nextState;
@@ -153,10 +123,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
         isFetching: true,
         error: null,
         successMsg:null,
-        // showDeleteModal: false,
         noteToDelete: null,
-        // showEditModal: true,
-        // noteToEdit: action.note,
         newNote: null
       }
 
@@ -168,10 +135,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: true,
             error: null,
             successMsg:null,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: true,
-            // noteToEdit: action.note,
             newNote: null
           }
 
@@ -192,10 +156,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             isFetching: false,
             error: null,
             successMsg:action.message,
-            // showDeleteModal: false,
             noteToDelete: null,
-            // showEditModal: true,
-            // noteToEdit: action.note,
             newNote: null
           }
 
@@ -207,9 +168,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           isFetching: false,
           error: action.error,
           successMsg:null,
-          // showDeleteModal: false,
           noteToDelete: null,
-          // showEditModal: true,
           noteToEdit: currentState.noteToEdit,
           newNote: null
         }
@@ -223,10 +182,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           isFetching: true,
           error: null,
           successMsg:null,
-          // showDeleteModal: true,
           noteToDelete: action.note,
-          // showEditModal: false,
-          // noteToEdit: null,
           newNote: null
         }
 
@@ -239,10 +195,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           isFetching: false,
           error: null,
           successMsg:action.message,
-          // showDeleteModal: true,
           noteToDelete: null,
-          // showEditModal: false,
-          // noteToEdit: null,
           newNote: null
         }
 
@@ -255,10 +208,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           isFetching: false,
           error: action.error,
           successMsg:null,
-          // showDeleteModal: true,
           noteToDelete: null,
-          // showEditModal: false,
-          // noteToEdit: null,
           newNote: null
         }
 

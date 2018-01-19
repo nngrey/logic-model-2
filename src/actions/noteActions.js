@@ -1,5 +1,3 @@
-// ./react-redux-client/src/actions/todoActions.js
-
 const apiUrl = "/api/";
 
 export const addNewNote = (note) => {
