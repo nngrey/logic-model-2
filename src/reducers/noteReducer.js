@@ -56,7 +56,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             // noteToEdit: null,
           }
 
-    case 'FETCH_TODO_REQUEST':
+    case 'FETCH_NOTE_REQUEST':
           return {
             ...currentState,
             notes:currentState.notes,
@@ -70,7 +70,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             // noteToEdit: null,
           }
 
-    case 'FETCH_TODO_SUCCESS':
+    case 'FETCH_NOTE_SUCCESS':
           return {
             ...currentState,
             notes:currentState.notes,
@@ -84,7 +84,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             // noteToEdit: null,
           }
 
-    case 'FETCH_TODO_FAILED':
+    case 'FETCH_NOTE_FAILED':
           return {
             ...currentState,
             notes:[],
@@ -98,7 +98,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             // noteToEdit: null,
           }
 
-    case 'ADD_NEW_TODO_REQUEST':
+    case 'ADD_NEW_NOTE_REQUEST':
           return {
             ...currentState,
             notes:currentState.notes,
@@ -113,7 +113,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             newNote: action.note
           }
 
-    case 'ADD_NEW_TODO_REQUEST_FAILED':
+    case 'ADD_NEW_NOTE_REQUEST_FAILED':
           return {
             ...currentState,
             notes:currentState.notes,
@@ -128,7 +128,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             newNote: null
           }
 
-    case 'ADD_NEW_TODO_REQUEST_SUCCESS':
+    case 'ADD_NEW_NOTE_REQUEST_SUCCESS':
           const nextState =  {
             ...currentState,
             notes:[...currentState.notes, action.note],
@@ -174,7 +174,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           newNote: null
         }
 
-    case 'EDIT_TODO_REQUEST':
+    case 'EDIT_NOTE_REQUEST':
           return {
             ...currentState,
             notes:currentState.notes,
@@ -189,7 +189,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             newNote: null
           }
 
-    case 'EDIT_TODO_SUCCESS':
+    case 'EDIT_NOTE_SUCCESS':
          const updatedNotes = currentState.notes.map((note) => {
            if(note._id !== action.note._id){
              //This is not the item we care about, keep it as is
@@ -212,7 +212,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             newNote: null
           }
 
-  case 'EDIT_TODO_FAILED':
+  case 'EDIT_NOTE_FAILED':
         return {
           ...currentState,
           notes:currentState.notes,
@@ -227,7 +227,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           newNote: null
         }
 
-  case 'DELETE_TODO_REQUEST':
+  case 'DELETE_NOTE_REQUEST':
         return {
           ...currentState,
           notes:currentState.notes,
@@ -242,7 +242,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           newNote: null
         }
 
-  case 'DELETE_TODO_SUCCESS':
+  case 'DELETE_NOTE_SUCCESS':
   const filteredNotes = currentState.notes.filter((note) => note._id !== currentState.noteToDelete._id)
         return {
           ...currentState,
@@ -259,7 +259,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
         }
 
 
-  case 'DELETE_TODO_FAILED':
+  case 'DELETE_NOTE_FAILED':
         return {
           ...currentState,
           notes:currentState.notes,

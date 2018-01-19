@@ -13,6 +13,7 @@ export default class App extends React.Component {
     super(props);
     this.toggleAddTodo = this.toggleAddTodo.bind(this);
     this.addTodo = this.addTodo.bind(this);
+    this.addNote = this.addNote.bind(this);
   }
 
   toggleAddTodo(e){
@@ -39,9 +40,16 @@ export default class App extends React.Component {
       }
   }
 
+  addNote(){
+      // const data = {noteText: 'New note'};
+      const data = new FormData();
+      data.append('noteText', 'New note');
+      this.props.mappedAddNote(data);
+  }
+
   render(){
     const appState = this.props.mappedAppState;
-    const notes = [{task: "Go shopping", id: 1}];
+    // const notes = [{task: "Go shopping", id: 1}];
     return(
       <div>
       <Navbar inverse  collapseOnSelect className="customNav">
@@ -73,7 +81,8 @@ export default class App extends React.Component {
    <div>
      <button className="add-note" onClick={this.addNote} >+</button>
      <Notes
-       notes={notes}
+       // notes={notes}
+       fetchNotes={this.props.mappedFetchNotes}
        // onNoteClick={this.props.actions.editingNote}
        // onEdit={this.props.actions.editNote}
        onDelete={this.deleteNote}

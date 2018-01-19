@@ -55,6 +55,8 @@ export default class Todos extends React.Component {
   }
 
   render(){
+    console.log("+++++++++++");
+    console.log(this.props);
     const todoState = this.props.mappedTodoState;
     const todos = todoState.todos;
     const editTodo = todoState.todoToEdit;

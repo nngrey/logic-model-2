@@ -2,7 +2,7 @@
 
 const apiUrl = "/api/";
 
-export const addNewNote = (note) => {console.log(note)
+export const addNewNote = (note) => {console.log("***"+note)
   return (dispatch) => {
     dispatch(addNewNoteRequest(note));
     return fetch(apiUrl, {
@@ -24,6 +24,7 @@ export const addNewNote = (note) => {console.log(note)
 }
 
 export const addNewNoteRequest = (note) => {
+  console.log("+++"+ note)
   return {
     type: 'ADD_NEW_NOTE_REQUEST',
     note
