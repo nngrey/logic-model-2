@@ -10,9 +10,8 @@ export default class App extends React.Component {
   }
 
   addNote(){
-      const data = new FormData();
-      data.append('noteText', 'New note');
-      this.props.mappedAddNote(data);
+    const data = new FormData();
+    this.props.mappedAddNote(data);
   }
 
   render(){
@@ -28,9 +27,7 @@ export default class App extends React.Component {
         <div className="container">
           <button className="add-note" onClick={this.addNote}>Add Task</button>
           {this.props.children}
-         <Notes
-           fetchNotes={this.props.mappedFetchNotes}
-           />
+          <Notes fetchNotes={this.props.fetchNotes}/>
         </div>
       </div>
     );

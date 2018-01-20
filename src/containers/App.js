@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
     mappedAddNote: note => dispatch(noteActions.addNewNote(note)),
-    mappedFetchNotes: () => dispatch(noteActions.fetchNotes())
+    fetchNotes: () => dispatch(noteActions.fetchNotes())
   }
 }
 

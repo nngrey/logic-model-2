@@ -17,7 +17,7 @@ const Editable = (props) => {
 class Edit extends Component {
   render() {
     const className = this.props.className;
-    const value = (this.props.value === 'New note') ? '' : this.props.value;
+    const value = (this.props.value === 'New entry') ? '' : this.props.value;
 
     return <input
       type="text"
