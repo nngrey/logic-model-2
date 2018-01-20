@@ -1,19 +1,10 @@
 import React from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import '../styles/App.css';
 import Notes from './Notes';
 
 export default class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.addNote = this.addNote.bind(this);
-  }
-
-  addNote(){
-    const data = new FormData();
-    this.props.mappedAddNote(data);
-  }
-
   render(){
     return(
       <div>
@@ -23,11 +14,14 @@ export default class App extends React.Component {
               <a href="/#">Home</a>
             </Navbar.Brand>
           </Navbar.Header>
+          <Nav>
+            <LinkContainer to={{ pathname: '/about', query: {  } }}>
+               <NavItem eventKey={1}>About</NavItem>
+            </LinkContainer>
+          </Nav>
         </Navbar>
         <div className="container">
-          <button className="add-note" onClick={this.addNote}>Add Task</button>
           {this.props.children}
-          <Notes fetchNotes={this.props.fetchNotes}/>
         </div>
       </div>
     );

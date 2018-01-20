@@ -146,10 +146,12 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           }
 
   case 'EDIT_NOTE_SUCCESS':
-        action.note.editing = false;
+        if(!!action.note) {
+          action.note.editing = false;
+        }
 
         const updatedNotes = currentState.notes.map((note) => {
-          if(note._id !== action.note._id){
+          if((action.note === null) || (note._id !== action.note._id)){
             //This is not the item we care about, keep it as is
             return note;
           }
@@ -195,7 +197,8 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
         }
 
   case 'DELETE_NOTE_SUCCESS':
-        const filteredNotes = currentState.notes.filter((note) => note._id !== currentState.note._id)
+        let filteredNotes = currentState.notes;
+        filteredNotes = currentState.notes.filter((note) => (note !== null) && (note._id !== currentState.note._id))
         return {
           ...currentState,
           notes: filteredNotes,
