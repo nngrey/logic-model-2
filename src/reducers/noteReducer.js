@@ -145,28 +145,28 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             newNote: null
           }
 
-    case 'EDIT_NOTE_SUCCESS':
-          action.note.editing = false;
+  case 'EDIT_NOTE_SUCCESS':
+        action.note.editing = false;
 
-          const updatedNotes = currentState.notes.map((note) => {
-            if(note._id !== action.note._id){
-              //This is not the item we care about, keep it as is
-              return note;
-            }
-            //Otherwise, this is the one we want to return an updated value
-            return { ...note, ...action.note }
-          })
-
-          return {
-            ...currentState,
-            notes: updatedNotes,
-            note: action.note,
-            isFetching: false,
-            error: null,
-            successMsg: action.message,
-            noteToDelete: null,
-            newNote: null
+        const updatedNotes = currentState.notes.map((note) => {
+          if(note._id !== action.note._id){
+            //This is not the item we care about, keep it as is
+            return note;
           }
+          //Otherwise, this is the one we want to return an updated value
+          return { ...note, ...action.note }
+        })
+
+        return {
+          ...currentState,
+          notes: updatedNotes,
+          note: action.note,
+          isFetching: false,
+          error: null,
+          successMsg: action.message,
+          noteToDelete: null,
+          newNote: null
+        }
 
   case 'EDIT_NOTE_FAILED':
         return {
