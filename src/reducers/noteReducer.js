@@ -102,10 +102,11 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
           }
 
     case 'ADD_NEW_NOTE_REQUEST_SUCCESS':
+          action.note.editing = true;
           const nextState =  {
             ...currentState,
             notes:[...currentState.notes, action.note],
-            note:null,
+            note:action.note,
             isFetching: false,
             error: null,
             successMsg:action.message,

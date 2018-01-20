@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
-import './App.css';
+import '../styles/App.css';
 import Notes from './Notes';
 
 export default class App extends React.Component {
@@ -26,8 +26,8 @@ export default class App extends React.Component {
           </Navbar.Header>
         </Navbar>
         <div className="container">
+          <button className="add-note" onClick={this.addNote}>Add Task</button>
           {this.props.children}
-          <button className="add-note" onClick={this.addNote} >+</button>
          <Notes
            fetchNotes={this.props.mappedFetchNotes}
            />
