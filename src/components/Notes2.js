@@ -13,9 +13,9 @@ export default class Notes extends React.Component {
   //   this.props.mappedDeleteNote(noteToDelete);
   // }
   //
-  // editingNote(noteToEdit){
-  //   this.props.mappedEditingNote(noteToEdit);
-  // }
+  editingNote(noteToEdit){
+    this.props.mappedEditingNote(noteToEdit);
+  }
   //
   // addNote(){
   //   const data = new FormData();
@@ -24,22 +24,20 @@ export default class Notes extends React.Component {
   // }
 
   render(){
-    const noteState = this.props.mappedNoteState;
+    // const noteState = this.props.mappedNoteState;
     const notes = this.props.notes;
-    console.log(this.props);
     return (
       <div>
-        <button className="add-note" onClick={this.props.addNote}>Add Task</button>
         <ul className="notes">
           {notes.map((note) =>
             <li key={note._id}>
-               <Note className="note" onClick={this.props.editingNote}>
+               <Note className="note" onClick={() => this.editingNote(note)}>
                  <Editable
                    editing={note.editing}
                    value={note.noteText}
                    onEdit={this.props.mappedEditNote}
                    id={note._id}/>
-                 <button className="delete" onClick={this.props.onDelete}>x</button>
+                 <button className="delete" onClick={() => this.props.onDelete(note)}>x</button>
                </Note>
              </li>
           )}

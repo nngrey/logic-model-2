@@ -1,11 +1,11 @@
 const apiUrl = "/api/";
 
-export const addNewNote = (note) => {
+export const addNewNote = (noteData) => {
   return (dispatch) => {
-    dispatch(addNewNoteRequest(note));
+    dispatch(addNewNoteRequest(noteData));
     return fetch(apiUrl, {
       method:'post',
-      body: note,
+      body: noteData,
     }).then(response => {
       if(response.ok){
         response.json().then(data => {console.log(data.note);

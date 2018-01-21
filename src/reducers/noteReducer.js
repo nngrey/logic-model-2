@@ -200,6 +200,8 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
 
   case 'DELETE_NOTE_REQUEST':
         action.note.editing = false;
+        console.log('*******');
+        console.log(action.note);
         return {
           ...currentState,
           notes: currentState.notes,
@@ -213,6 +215,7 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
 
   case 'DELETE_NOTE_SUCCESS':
         let filteredNotes = currentState.notes;
+        // Not sure why this is not noteToDelete
         filteredNotes = currentState.notes.filter((note) => (note !== null) && (note._id !== currentState.note._id))
         return {
           ...currentState,

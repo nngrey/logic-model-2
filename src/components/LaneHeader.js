@@ -6,6 +6,7 @@ export default class Notes extends React.Component {
 
   addNote(){
     const data = new FormData();
+    data.append('laneId', this.props.lane._id)
     this.props.mappedAddNote(data);
   }
 
@@ -14,7 +15,7 @@ export default class Notes extends React.Component {
     return (
       <div className="lane-header">
         <div className="lane-add-note">
-          <button>+</button>
+          <button className="add-note" onClick={() => this.addNote()}>Add Note</button>
         </div>
         <div className="lane-name">{this.props.lane.name}</div>
       </div>
