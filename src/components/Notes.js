@@ -23,6 +23,7 @@ export default class Notes extends React.Component {
   }
 
   render(){
+    console.log(this.props);
     const noteState = this.props.mappedNoteState;
     const notes = (typeof noteState !== 'undefined') ? noteState.notes : [];
     return (

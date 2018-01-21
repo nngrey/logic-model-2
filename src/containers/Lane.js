@@ -1,12 +1,13 @@
+// ./react-redux-client/src/containers/Todo.js
 import { connect } from 'react-redux';
 import * as noteActions from '../actions/noteActions';
-import Notes from '../components/Notes';
+import Lane from '../components/Lane';
 
 // map state from store to props
-const mapStateToProps = (state,ownProps) => {
+const mapStateToProps = (state) => {
   return {
     //you can now say this.props.mappedAppSate
-    mappedNoteState: state.noteState
+    mappedLaneState: state.noteState.notes
   }
 }
 
@@ -22,4 +23,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Notes);
+export default connect(mapStateToProps,mapDispatchToProps)(Lane);
