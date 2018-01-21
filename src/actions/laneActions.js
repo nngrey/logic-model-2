@@ -1,4 +1,4 @@
-const apiUrl = "/api/lanes";
+const apiUrl = "/api/lanes/";
 
 export const addNewLane = (laneData) => {
   return (dispatch) => {
@@ -90,70 +90,70 @@ export const fetchLanesFailed = (error) => {
   }
 }
 
-export const editNote = (id, value) => {
+export const editLane = (id, value) => {
     return (dispatch) => {
-      dispatch(editNoteRequest(id));
+      dispatch(editLaneRequest(id));
       return fetch(apiUrl, {
         method:'put',
         body:id
       }).then(response => {
         if(response.ok){
           response.json().then(data => {
-            dispatch(editNoteSuccess(data.note,data.message));
+            dispatch(editLaneSuccess(data.lane,data.message));
           })
         }
         else{
           response.json().then(error => {
-            dispatch(editNoteFailed(error));
+            dispatch(editLaneFailed(error));
           })
         }
       })
     }
 }
 
-export const editingNote = (note) => {
+export const editingLane = (lane) => {
    return {
-     type:'EDITING_NOTE',
-     note
+     type:'EDITING_LANE',
+     lane
    }
 }
 
-export const editNoteRequest = (id) => {
+export const editLaneRequest = (id) => {
    return {
-     type:'EDIT_NOTE_REQUEST',
+     type:'EDIT_LANE_REQUEST',
      id
    }
 }
 
-export const editNoteSuccess = (note,message) => {
+export const editLaneSuccess = (lane,message) => {
   return {
-    type:'EDIT_NOTE_SUCCESS',
-    note:note,
+    type:'EDIT_LANE_SUCCESS',
+    lane:lane,
     message:message
   }
 }
 
-export const editNoteFailed = (error) => {
+export const editLaneFailed = (error) => {
   return {
-    type:'EDIT_NOTE_FAILED',
+    type:'EDIT_LANE_FAILED',
     error
   }
 }
 
-export const deleteNote = (note) => {
+export const deleteLane = (lane) => {
   return (dispatch) => {
-    dispatch(deleteNoteRequest(note));
-    return fetch(apiUrl + note._id ,{
+    dispatch(deleteLaneRequest(lane));
+    return fetch(apiUrl + lane._id ,{
       method:'delete'
     }).then(response => {
       if(response.ok){
         response.json().then(data => {
-          dispatch(deleteNoteSuccess(data.message));
+          dispatch(deleteLaneSuccess(data.message));
         })
       }
       else{
         response.json().then(error => {
-          dispatch(deleteNoteFailed(error));
+          dispatch(deleteLaneFailed(error));
         })
       }
     })
@@ -161,23 +161,23 @@ export const deleteNote = (note) => {
   }
 }
 
-export const deleteNoteRequest = (note) => {
+export const deleteLaneRequest = (lane) => {
    return {
-     type:'DELETE_NOTE_REQUEST',
-     note
+     type:'DELETE_LANE_REQUEST',
+     lane
    }
 }
 
-export const deleteNoteSuccess = (message) => {
+export const deleteLaneSuccess = (message) => {
   return {
-    type:'DELETE_NOTE_SUCCESS',
+    type:'DELETE_LANE_SUCCESS',
     message:message
   }
 }
 
-export const deleteNoteFailed = (error) => {
+export const deleteLaneFailed = (error) => {
   return {
-    type:'DELETE_NOTE_FAILED',
+    type:'DELETE_LANE_FAILED',
     error
   }
 }
