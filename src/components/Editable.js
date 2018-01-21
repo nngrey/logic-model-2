@@ -35,6 +35,7 @@ class Edit extends Component {
   }
 
   finishEdit = (e) => {
+
     const newValue = e.target.value;
     const value = (newValue.length > 0) ? newValue : this.props.value
 

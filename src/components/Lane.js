@@ -35,7 +35,7 @@ export default class Lane extends React.Component {
 
   render(){
     const allNotes = this.props.mappedNotesState;
-    const laneNotes = allNotes.filter(note => note.laneId === this.props.lane._id)
+    const laneNotes = allNotes.filter(note => note.laneId === this.props.lane._id);
 
     return (
       <div className="lane">

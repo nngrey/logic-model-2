@@ -20,7 +20,7 @@ export default class App extends React.Component {
             </LinkContainer>
           </Nav>
         </Navbar>
-        <div className="container">
+        <div>
           {this.props.children}
         </div>
       </div>

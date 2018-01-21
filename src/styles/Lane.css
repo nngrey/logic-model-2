@@ -1,3 +1,9 @@
+body {
+  background-color: cornsilk;
+
+  font-family: sans-serif;
+}
+
 .lane {
   display: inline-block;
 
@@ -45,8 +51,9 @@
 }
 
 .add-lane, .lane-add-note button {
+  float: left;
   cursor: pointer;
-
+  color: black;
   background-color: #fdfdfd;
   border: 1px solid #ccc;
 }
@@ -59,4 +66,26 @@
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: 0;
+}
+
+.notes {
+  margin: 0.5em;
+  padding-left: 0;
+  min-width: 12em;
+  /* max-width: 10em; */
+  list-style: none;
+}
+
+.note {
+  overflow: auto;
+
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+
+  background-color: #fdfdfd;
+  box-shadow: 0 0 0.3em .03em rgba(0,0,0,.3);
+}
+
+.edit {
+  max-width: 10em;
 }

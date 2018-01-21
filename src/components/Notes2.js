@@ -4,17 +4,22 @@ import Editable from './Editable';
 import '../styles/Notes.css';
 
 export default class Notes extends React.Component {
+  constructor(props){
+  super(props);
 
-  // componentWillMount(){
-  //   this.props.fetchNotes();
-  // }
+  this.editNote = this.editNote.bind(this);
+}
 
-  // deleteNote(noteToDelete){
-  //   this.props.mappedDeleteNote(noteToDelete);
-  // }
+  deleteNote(noteToDelete){
+    this.props.mappedDeleteNote(noteToDelete);
+  }
   //
   editingNote(noteToEdit){
     this.props.mappedEditingNote(noteToEdit);
+  }
+
+  editNote(noteToEdit){
+    this.props.mappedEditNote(noteToEdit);
   }
   //
   // addNote(){
@@ -35,9 +40,9 @@ export default class Notes extends React.Component {
                  <Editable
                    editing={note.editing}
                    value={note.noteText}
-                   onEdit={this.props.mappedEditNote}
+                   onEdit={this.editNote}
                    id={note._id}/>
-                 <button className="delete" onClick={() => this.props.onDelete(note)}>x</button>
+                 <button className="delete" onClick={() => this.deleteNote(note)}>x</button>
                </Note>
              </li>
           )}

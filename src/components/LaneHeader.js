@@ -15,7 +15,7 @@ export default class Notes extends React.Component {
     return (
       <div className="lane-header">
         <div className="lane-add-note">
-          <button className="add-note" onClick={() => this.addNote()}>Add Note</button>
+          <button className="add-note" onClick={() => this.addNote()}>+</button>
         </div>
         <div className="lane-name">{this.props.lane.name}</div>
       </div>

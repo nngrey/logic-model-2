@@ -1,13 +1,13 @@
 // ./react-redux-client/src/containers/Todo.js
 import { connect } from 'react-redux';
-import * as noteActions from '../actions/noteActions';
+import * as laneActions from '../actions/laneActions';
 import Lanes from '../components/Lanes';
 
 // map state from store to props
 const mapStateToProps = (state) => {
   return {
     //you can now say this.props.mappedAppSate
-    mappedLanesState: state.noteState.lanes
+    mappedLanesState: state.laneState.lanes
   }
 }
 
@@ -15,6 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
+    mappedAddLane: lane => dispatch(laneActions.addNewLane(lane)),
+    fetchLanes: () => dispatch(laneActions.fetchLanes())
   }
 }
 

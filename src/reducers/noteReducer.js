@@ -7,14 +7,15 @@ const INITIAL_STATE = {
             name: 'second lane'
           }
         ],
-  notes: [
-          { _id: '234',
-            noteText: 'first note'
-          },
-          { _id: '345',
-            noteText: 'second note'
-          }
-        ],
+  // notes: [
+  //         { _id: '234',
+  //           noteText: 'first note'
+  //         },
+  //         { _id: '345',
+  //           noteText: 'second note'
+  //         }
+  //       ],
+  notes:[],
   note: null,
   isFetching: false,
   error: null,
@@ -200,8 +201,6 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
 
   case 'DELETE_NOTE_REQUEST':
         action.note.editing = false;
-        console.log('*******');
-        console.log(action.note);
         return {
           ...currentState,
           notes: currentState.notes,
