@@ -29,14 +29,20 @@ export default class Lane extends React.Component {
     this.props.mappedAddNote(data);
   }
 
+  editingLane(laneToEdit){
+    this.props.mappedEditingLane(laneToEdit);
+  }
+
   editNote(noteToEdit){
     this.props.mappedEditNote(noteToEdit);
   }
 
   render(){
+    // const lane = this.props.mappedLaneState;
+    // console.log('++++++++');
+    // console.log(lane);
     const allNotes = this.props.mappedNotesState;
     const laneNotes = allNotes.filter(note => note.laneId === this.props.lane._id);
-
     return (
       <div className="lane">
         <LaneHeader lane={this.props.lane} />

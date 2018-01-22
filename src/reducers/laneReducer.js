@@ -1,12 +1,5 @@
 const INITIAL_STATE = {
-  lanes:[
-          { _id: '123',
-            name: 'correct lane'
-          },
-          { _id: '456',
-            name: 'correct2 lane'
-          }
-        ],
+  lanes:[],
   // notes: [
   //         { _id: '234',
   //           noteText: 'first note'
@@ -39,7 +32,6 @@ export  const laneReducer = (currentState = INITIAL_STATE, action) => {
           }
 
     case 'FETCH_LANES_SUCCESS':
-          console.log('hi');
           return {
             ...currentState,
             lanes: action.lanes,
@@ -127,7 +119,7 @@ export  const laneReducer = (currentState = INITIAL_STATE, action) => {
           action.lane.editing = true;
           const nextState =  {
             ...currentState,
-            lanes: [...currentState.lanes, action.lane],
+              lanes: [...currentState.lanes, action.lane],
             lane: action.lane,
             isFetching: false,
             error: null,
@@ -214,10 +206,9 @@ export  const laneReducer = (currentState = INITIAL_STATE, action) => {
         }
 
   case 'DELETE_LANE_SUCCESS':
-        console.log(currentState)
         let filteredLanes = currentState.lanes;
         // Not sure why this is not laneToDelete
-        filteredLanes = currentState.lanes.filter((lane) => (lane !== null) && (lane._id !== currentState.laneToDelete._id))
+        filteredLanes = currentState.lanes.filter((lane) => (lane !== null) && (lane._id !== currentState.lane._id))
         return {
           ...currentState,
           lanes: filteredLanes,

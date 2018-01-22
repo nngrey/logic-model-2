@@ -13,7 +13,7 @@ export default class Notes extends React.Component {
   deleteNote(noteToDelete){
     this.props.mappedDeleteNote(noteToDelete);
   }
-  //
+
   editingNote(noteToEdit){
     this.props.mappedEditingNote(noteToEdit);
   }
@@ -21,12 +21,6 @@ export default class Notes extends React.Component {
   editNote(noteToEdit){
     this.props.mappedEditNote(noteToEdit);
   }
-  //
-  // addNote(){
-  //   const data = new FormData();
-  //   console.log(this.props);
-  //   this.props.mappedAddNote(data);
-  // }
 
   render(){
     // const noteState = this.props.mappedNoteState;
@@ -39,7 +33,7 @@ export default class Notes extends React.Component {
                <Note className="note" onClick={() => this.editingNote(note)}>
                  <Editable
                    editing={note.editing}
-                   value={note.noteText}
+                   value={note.name}
                    onEdit={this.editNote}
                    id={note._id}/>
                  <button className="delete" onClick={() => this.deleteNote(note)}>x</button>

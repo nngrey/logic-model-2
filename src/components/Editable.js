@@ -16,8 +16,9 @@ const Editable = (props) => {
 
 class Edit extends Component {
   render() {
+    let value = this.props.value;
     const className = this.props.className;
-    const value = (this.props.value === 'New entry') ? '' : this.props.value;
+    value = (value === 'New entry' || value === 'New column') ? '' : value;
 
     return <input
       type="text"
@@ -29,19 +30,19 @@ class Edit extends Component {
   }
 
   checkEnter = (e) => {
+    // e.stopPropigation();
     if(e.key === 'Enter') {
       this.finishEdit(e);
     }
   }
 
   finishEdit = (e) => {
-
     const newValue = e.target.value;
     const value = (newValue.length > 0) ? newValue : this.props.value
-
+    console.log(this.props);
     if(this.props.onEdit) {
       const data = new FormData();
-      data.append('noteText', value);
+      data.append('name', value);
       data.append('id', this.props.id)
       this.props.onEdit(data);
     }

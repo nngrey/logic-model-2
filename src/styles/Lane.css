@@ -15,6 +15,7 @@ body {
 
   min-width: 10em;
   vertical-align: top;
+  max-width: 13em;
 }
 
 .lane-header {
@@ -69,6 +70,10 @@ button.lane-delete {
   border: 0;
 }
 
+span.value.laneName {
+  color: white;
+}
+
 .notes {
   margin: 0.5em;
   padding-left: 0;
@@ -88,5 +93,6 @@ button.lane-delete {
 }
 
 .edit {
-  max-width: 10em;
+  max-width: 8em;
+  color: black;
 }

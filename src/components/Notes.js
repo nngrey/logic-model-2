@@ -34,7 +34,7 @@ export default class Notes extends React.Component {
                <Note className="note" onClick={() => this.editingNote(note)}>
                  <Editable
                    editing={note.editing}
-                   value={note.noteText}
+                   value={note.name}
                    onEdit={this.props.mappedEditNote}
                    id={note._id}/>
                  <button className="delete" onClick={() => this.deleteNote(note)}>x</button>

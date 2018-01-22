@@ -19,6 +19,9 @@ export default class Lanes extends React.Component {
 
   render(){
     const lanes = this.props.mappedLanesState;
+    console.log('#######')
+
+    console.log(lanes);
     return (
       <div>
         <div className="container">

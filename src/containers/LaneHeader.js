@@ -6,9 +6,11 @@ import LaneHeader from '../components/LaneHeader';
 
 // map state from store to props
 const mapStateToProps = (state) => {
+
   return {
     //you can now say this.props.mappedAppSate
-    mappedLaneHeaderState: state.noteState.notes
+    mappedLaneHeaderState: state.noteState.notes,
+    mappedLaneState: state.laneState.lane
   }
 }
 
@@ -16,8 +18,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
+    mappedEditLane: (id, value) => dispatch(laneActions.editLane(id, value)),
+    mappedEditingLane: lane => dispatch(laneActions.editingLane(lane)),
     mappedAddNote: note => dispatch(noteActions.addNewNote(note)),
-    mappedDeleteLane: note => dispatch(laneActions.deleteLane(note))  
+    mappedDeleteLane: note => dispatch(laneActions.deleteLane(note))
   }
 }
 
