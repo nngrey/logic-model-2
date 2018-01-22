@@ -25,7 +25,7 @@ export default class Lanes extends React.Component {
     return (
       <div>
         <div className="container">
-          <button className="add-lane" onClick={this.addLane}>Add column</button>
+          <button className="add-lane" onClick={this.addLane}>+ Add column</button>
         </div>
         <div  className="container lanesContainer">
           {lanes.map(lane =>

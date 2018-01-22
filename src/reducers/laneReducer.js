@@ -207,8 +207,9 @@ export  const laneReducer = (currentState = INITIAL_STATE, action) => {
 
   case 'DELETE_LANE_SUCCESS':
         let filteredLanes = currentState.lanes;
-        // Not sure why this is not laneToDelete
-        filteredLanes = currentState.lanes.filter((lane) => (lane !== null) && (lane._id !== currentState.lane._id))
+        // Not sure why this is not just laneToDelete
+        const laneToDelete = currentState.laneToDelete ? currentState.laneToDelete : currentState.lane
+        filteredLanes = currentState.lanes.filter((lane) => lane._id !== laneToDelete._id)
         return {
           ...currentState,
           lanes: filteredLanes,

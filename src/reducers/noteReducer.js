@@ -214,8 +214,9 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
 
   case 'DELETE_NOTE_SUCCESS':
         let filteredNotes = currentState.notes;
-        // Not sure why this is not noteToDelete
-        filteredNotes = currentState.notes.filter((note) => (note !== null) && (note._id !== currentState.note._id))
+        // Not sure why this is not just noteToDelete
+        const noteToDelete = currentState.noteToDelete ? currentState.noteToDelete : currentState.note
+        filteredNotes = currentState.notes.filter((note) => note._id !== noteToDelete._id)
         return {
           ...currentState,
           notes: filteredNotes,

@@ -32,6 +32,7 @@ body {
 
 .lane-name {
   float: left;
+  max-width: 8em;
 }
 
 .lane-add-note {
