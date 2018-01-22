@@ -7,12 +7,10 @@ import Lane from '../components/Lane';
 
 // map state from store to props
 const mapStateToProps = (state) => {
-  // console.log('888888888');
-  // console.log(state.laneState.lane);
   return {
     //you can now say this.props.mappedAppSate
     mappedNotesState: state.noteState.notes,
-    mappedLaneState: state.laneState.lane
+    // mappedLaneState: state.laneState.lane
   }
 }
 
@@ -20,9 +18,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedEditingLane: lane => dispatch(laneActions.editingLane(lane)),
     fetchNotes: () => dispatch(noteActions.fetchNotes()),
-    mappedAddNote: note => dispatch(noteActions.addNewNote(note)),
     mappedEditingNote: note => dispatch(noteActions.editingNote(note)),
     mappedEditNote: (id, value) => dispatch(noteActions.editNote(id, value)),
     mappedDeleteNote: noteToDelete => dispatch(noteActions.deleteNote(noteToDelete))

@@ -29,22 +29,21 @@ export default class Notes extends React.Component {
   }
 
   render(){
-    // const lane = this.props.mappedLaneState;
-    // console.log(lane);
+    const lane = this.props.lane;
     return (
       <div className="lane-header">
         <div className="lane-add-note">
-          <button className="add-note" onClick={() => this.addNote()}>+</button>
+          <button className="add-note" title="Add item to column" onClick={() => this.addNote()}>+</button>
         </div>
-        <div className="lane-name" onClick={() => this.editingLane(this.props.lane)}>
+        <div className="lane-name" onClick={() => this.editingLane(lane)}>
           <Editable
-            editing={this.props.lane.editing}
-            value={this.props.lane.name}
+            editing={lane.editing}
+            value={lane.name}
             onEdit={this.editLane}
-            id={this.props.lane._id}
+            id={lane._id}
             className={"lane-name"}/>
         </div>
-        <button className="lane-delete" onClick={() => this.deleteLane(this.props.lane)}>x</button>
+        <button className="lane-delete" title="Delete column" onClick={() => this.deleteLane(lane)}>x</button>
       </div>
     );
   };

@@ -4,10 +4,10 @@ import Editable from './Editable';
 import '../styles/Notes.css';
 
 export default class Notes extends React.Component {
-
-  componentWillMount(){
-    this.props.fetchNotes();
-  }
+  constructor(props){
+  super(props);
+  this.editNote = this.editNote.bind(this);
+}
 
   deleteNote(noteToDelete){
     this.props.mappedDeleteNote(noteToDelete);
@@ -17,17 +17,14 @@ export default class Notes extends React.Component {
     this.props.mappedEditingNote(noteToEdit);
   }
 
-  addNote(){
-    const data = new FormData();
-    this.props.mappedAddNote(data);
+  editNote(noteToEdit){
+    this.props.mappedEditNote(noteToEdit);
   }
 
   render(){
-    const noteState = this.props.mappedNoteState;
-    const notes = (typeof noteState !== 'undefined') ? noteState.notes : [];
+    const notes = this.props.notes;
     return (
       <div>
-        <button className="add-note" onClick={() => this.addNote()}>Add Task</button>
         <ul className="notes">
           {notes.map((note) =>
             <li key={note._id}>
@@ -35,9 +32,9 @@ export default class Notes extends React.Component {
                  <Editable
                    editing={note.editing}
                    value={note.name}
-                   onEdit={this.props.mappedEditNote}
+                   onEdit={this.editNote}
                    id={note._id}/>
-                 <button className="delete" onClick={() => this.deleteNote(note)}>x</button>
+                 <button className="delete" title="Delete item" onClick={() => this.deleteNote(note)}>x</button>
                </Note>
              </li>
           )}

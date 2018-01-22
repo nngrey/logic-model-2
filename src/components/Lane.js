@@ -1,13 +1,11 @@
 import React from 'react';
 import '../styles/Lane.css';
 import LaneHeader from '../containers/LaneHeader';
-import Notes from '../containers/Notes2';
-
+import Notes from '../containers/Notes';
 
 export default class Lane extends React.Component {
   constructor(props){
   super(props);
-  this.addNote = this.addNote.bind(this);
   this.editingNote = this.editingNote.bind(this);
   this.deleteNote = this.deleteNote.bind(this);
 }
@@ -24,35 +22,24 @@ export default class Lane extends React.Component {
     this.props.mappedEditingNote(noteToEdit);
   }
 
-  addNote(){
-    const data = new FormData();
-    this.props.mappedAddNote(data);
-  }
-
-  editingLane(laneToEdit){
-    this.props.mappedEditingLane(laneToEdit);
-  }
-
   editNote(noteToEdit){
     this.props.mappedEditNote(noteToEdit);
   }
 
   render(){
-    // const lane = this.props.mappedLaneState;
-    // console.log('++++++++');
-    // console.log(lane);
+    const lane = this.props.lane;
     const allNotes = this.props.mappedNotesState;
-    const laneNotes = allNotes.filter(note => note.laneId === this.props.lane._id);
+    const laneNotes = allNotes.filter(note => note.laneId === lane._id);
+
     return (
       <div className="lane">
-        <LaneHeader lane={this.props.lane} />
+        <LaneHeader lane={lane} />
         <Notes
           notes={laneNotes}
-          addNote={this.addNote}
           onEditing={this.editingNote}
           onEdit={this.editNote}
           onDelete={this.deleteNote}
-          lane={this.props.lane}/>
+          lane={lane}/>
       </div>
     );
   };

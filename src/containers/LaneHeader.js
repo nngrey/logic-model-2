@@ -9,7 +9,6 @@ const mapStateToProps = (state) => {
 
   return {
     //you can now say this.props.mappedAppSate
-    mappedLaneHeaderState: state.noteState.notes,
     mappedLaneState: state.laneState.lane
   }
 }

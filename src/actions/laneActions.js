@@ -90,6 +90,13 @@ export const fetchLanesFailed = (error) => {
   }
 }
 
+export const editingLane = (lane) => {
+  return {
+    type:'EDITING_LANE',
+    lane
+  }
+}
+
 export const editLane = (id, value) => {
     return (dispatch) => {
       dispatch(editLaneRequest(id));
@@ -109,13 +116,6 @@ export const editLane = (id, value) => {
         }
       })
     }
-}
-
-export const editingLane = (lane) => {
-   return {
-     type:'EDITING_LANE',
-     lane
-   }
 }
 
 export const editLaneRequest = (id) => {

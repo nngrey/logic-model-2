@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+.title {
+  font-size: 200%;
+}
+
 .lane {
   display: inline-block;
 
@@ -30,14 +34,18 @@ body {
   border-top-right-radius: 0.5em;
 }
 
+input.edit.lane-name {
+  max-width: 7em;
+}
+
 .lane-name {
   float: left;
+  min-width: 6em;
   max-width: 8em;
 }
 
 .lane-add-note {
   float: left;
-
   margin-right: 0.5em;
 }
 
@@ -54,11 +62,22 @@ body {
 }
 
 .add-lane, .lane-add-note button {
-  float: left;
+  float: right;
   cursor: pointer;
   color: black;
   background-color: #fdfdfd;
   border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button:hover {
+    background-color: #efefef;
+    color: black;
+}
+
+ button.add-lane {
+  padding: 8px 20px;
+  font-size: 15px;
 }
 
 button.lane-delete {
@@ -96,4 +115,31 @@ span.value.laneName {
 .edit {
   max-width: 8em;
   color: black;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }

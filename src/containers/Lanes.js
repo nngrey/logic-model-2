@@ -15,8 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedAddLane: lane => dispatch(laneActions.addNewLane(lane)),
-    fetchLanes: () => dispatch(laneActions.fetchLanes())
+    fetchLanes: () => dispatch(laneActions.fetchLanes()),
+    mappedAddLane: lane => dispatch(laneActions.addNewLane(lane))
   }
 }
 

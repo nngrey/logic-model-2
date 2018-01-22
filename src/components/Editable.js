@@ -30,7 +30,6 @@ class Edit extends Component {
   }
 
   checkEnter = (e) => {
-    // e.stopPropigation();
     if(e.key === 'Enter') {
       this.finishEdit(e);
     }
@@ -39,7 +38,7 @@ class Edit extends Component {
   finishEdit = (e) => {
     const newValue = e.target.value;
     const value = (newValue.length > 0) ? newValue : this.props.value
-    console.log(this.props);
+
     if(this.props.onEdit) {
       const data = new FormData();
       data.append('name', value);

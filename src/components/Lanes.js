@@ -19,12 +19,11 @@ export default class Lanes extends React.Component {
 
   render(){
     const lanes = this.props.mappedLanesState;
-    console.log('#######')
 
-    console.log(lanes);
     return (
       <div>
         <div className="container">
+          <span className="title">Logic model</span>
           <button className="add-lane" onClick={this.addLane}>+ Add column</button>
         </div>
         <div  className="container lanesContainer">

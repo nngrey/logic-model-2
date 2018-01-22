@@ -1,15 +1,5 @@
 const INITIAL_STATE = {
   lanes:[],
-  // notes: [
-  //         { _id: '234',
-  //           noteText: 'first note'
-  //         },
-  //         { _id: '345',
-  //           noteText: 'second note'
-  //         }
-  //       ],
-  // note: null,
-  // lanes: [],
   isFetching: false,
   error: null,
   successMsg: null,

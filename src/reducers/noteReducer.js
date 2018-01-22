@@ -1,20 +1,4 @@
 const INITIAL_STATE = {
-  lanes:[
-          { _id: '123',
-            name: 'first lane'
-          },
-          { _id: '456',
-            name: 'second lane'
-          }
-        ],
-  // notes: [
-  //         { _id: '234',
-  //           noteText: 'first note'
-  //         },
-  //         { _id: '345',
-  //           noteText: 'second note'
-  //         }
-  //       ],
   notes:[],
   note: null,
   isFetching: false,

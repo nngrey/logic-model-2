@@ -90,6 +90,13 @@ export const fetchNotesFailed = (error) => {
   }
 }
 
+export const editingNote = (note) => {
+  return {
+    type:'EDITING_NOTE',
+    note
+  }
+}
+
 export const editNote = (id, value) => {
     return (dispatch) => {
       dispatch(editNoteRequest(id));
@@ -109,13 +116,6 @@ export const editNote = (id, value) => {
         }
       })
     }
-}
-
-export const editingNote = (note) => {
-   return {
-     type:'EDITING_NOTE',
-     note
-   }
 }
 
 export const editNoteRequest = (id) => {

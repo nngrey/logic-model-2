@@ -14,7 +14,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    fetchNotes: () => dispatch(noteActions.fetchNotes())
   }
 }
 
