@@ -18,7 +18,7 @@ class Edit extends Component {
   render() {
     let value = this.props.value;
     const className = this.props.className;
-    value = (value === 'New entry' || value === 'New column') ? '' : value;
+    value = (value === 'New item' || value === 'New column') ? '' : value;
 
     return <input
       type="text"
@@ -42,7 +42,7 @@ class Edit extends Component {
     if(this.props.onEdit) {
       const data = new FormData();
       data.append('name', value);
-      data.append('id', this.props.id)
+      data.append('id', this.props.id);
       this.props.onEdit(data);
     }
   }

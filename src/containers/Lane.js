@@ -1,8 +1,6 @@
 // ./react-redux-client/src/containers/Todo.js
 import { connect } from 'react-redux';
 import * as noteActions from '../actions/noteActions';
-import * as laneActions from '../actions/laneActions';
-
 import Lane from '../components/Lane';
 
 // map state from store to props

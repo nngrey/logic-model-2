@@ -1,3 +1,4 @@
+import configureStore from '../store/configureStore';
 const apiUrl = "/api/";
 
 export const addNewNote = (noteData) => {
@@ -11,8 +12,7 @@ export const addNewNote = (noteData) => {
         response.json().then(data => {console.log(data.note);
           dispatch(addNewNoteRequestSuccess(data.note, data.message))
         })
-      }
-      else{
+      } else {
         response.json().then(error => {
           dispatch(addNewNoteRequestFailed(error))
         })
@@ -22,11 +22,36 @@ export const addNewNote = (noteData) => {
 }
 
 export const addNewNoteRequest = (note) => {
+  const store = configureStore();
   return {
     type: 'ADD_NEW_NOTE_REQUEST',
     note
   }
 }
+
+
+// export const attachToLane = (note, laneState) => {
+//   return {
+//     type: 'ATTACH_TO_LANE',
+//     note: note,
+//     laneState: laneState
+//   }
+// }
+
+//   this.setState({
+//     lanes: this.lanes.map(lane => {
+//       if(lane.notes.includes(noteId)) {
+//         lane.notes = lane.notes.filter(note => note !== noteId);
+//       }
+//
+//       if(lane.id === laneId) {
+//         lane.notes = lane.notes.concat([noteId]);
+//       }
+//
+//       return lane;
+//     })
+//   });
+// }
 
 export const addNewNoteRequestSuccess = (note,message) => {
   return {
@@ -97,12 +122,14 @@ export const editingNote = (note) => {
   }
 }
 
-export const editNote = (id, value) => {
+export const editNote = (data) => {
+    // console.log(id);
+    // console.log(value);
     return (dispatch) => {
-      dispatch(editNoteRequest(id));
+      dispatch(editNoteRequest(data));
       return fetch(apiUrl, {
         method:'put',
-        body:id
+        body:data
       }).then(response => {
         if(response.ok){
           response.json().then(data => {
@@ -180,4 +207,48 @@ export const deleteNoteFailed = (error) => {
     type:'DELETE_NOTE_FAILED',
     error
   }
+}
+
+
+
+export const detachFromLane = (laneId, noteId) => {
+  this.setState({
+    lanes: this.lanes.map(lane => {
+      if(lane.id === laneId) {
+        lane.notes = lane.notes.filter(note => note !== noteId);
+      }
+
+      return lane;
+    })
+  });
+}
+
+export const move = (lanes, notes, sourceId, targetId) => {
+  const sourceNote = notes.filter(note => note._id === sourceId)[0];
+  const targetNote = notes.filter(note => note._id === targetId)[0];
+  const sourceLaneNotes = notes.filter(note => note.laneId === sourceNote.laneId);
+  const targetLaneNotes = notes.filter(note => note.laneId === targetNote.laneId);
+
+  const sourceNoteIndex = sourceLaneNotes.indexOf(sourceNote);
+  const targetNoteIndex = targetLaneNotes.indexOf(targetNote);
+
+  return (dispatch) => {
+    if(sourceNote.laneId === targetNote.laneId) {
+      // move at once to avoid complications
+      sourceLaneNotes.splice(sourceNoteIndex, 1);
+      sourceLaneNotes.splice(targetNoteIndex, 0, sourceNote);
+    } else {
+      // get rid of the source
+      sourceLaneNotes.splice(sourceNoteIndex, 1);
+      // and move it to target
+      targetLaneNotes.splice(targetNoteIndex, 0, sourceNote);
+    }
+
+  return (dispatch) => {
+    const data = new FormData();
+    data.append('id', sourceNote._id);
+    data.append('laneId', targetNote.laneId);
+    dispatch(editNote(data));
+  }
+}
 }

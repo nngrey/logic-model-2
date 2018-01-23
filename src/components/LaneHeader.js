@@ -1,6 +1,5 @@
 import React from 'react';
 import Editable from './Editable';
-
 import uuid from 'uuid';
 import '../styles/Lane.css';
 
@@ -11,9 +10,17 @@ export default class Notes extends React.Component {
 }
 
   addNote(){
-    const data = new FormData();
-    data.append('laneId', this.props.lane._id)
-    this.props.mappedAddNote(data);
+    const lane = this.props.lane
+    const noteId = String(uuid.v4());
+    const noteData = new FormData();
+    noteData.append('uuid', noteId)
+    noteData.append('laneId', lane._id)
+    this.props.mappedAddNote(noteData);
+    lane.notes.push(noteId);
+    const laneData = new FormData();
+    laneData.append('notes', lane.notes);
+    laneData.append('id', lane._id);
+    this.props.mappedEditLane(laneData);
   }
 
   editLane(laneToEdit){

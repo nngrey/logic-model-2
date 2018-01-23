@@ -2,7 +2,6 @@ import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import '../styles/App.css';
-import Notes from './Notes';
 
 export default class App extends React.Component {
   render(){

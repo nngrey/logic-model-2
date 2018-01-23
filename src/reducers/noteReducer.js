@@ -94,18 +94,6 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             newNote: action.note
           }
 
-    case 'ADD_NEW_NOTE_REQUEST_FAILED':
-          return {
-            ...currentState,
-            notes: currentState.notes,
-            note: null,
-            isFetching: true,
-            error: action.error,
-            successMsg: null,
-            noteToDelete: null,
-            newNote: null
-          }
-
     case 'ADD_NEW_NOTE_REQUEST_SUCCESS':
           action.note.editing = true;
           const nextState =  {
@@ -118,7 +106,37 @@ export  const noteReducer = (currentState = INITIAL_STATE, action) => {
             noteToDelete: null,
             newNote: action.note
           }
-        return nextState;
+          return nextState;
+
+    // case 'ATTACH_TO_LANE':
+    //       const lanes = action.laneState.lanes
+    //       const note = action.note
+    //       const lane = lanes.filter(lane => lane._id === note.laneId);
+    //       lane.notes = lane.notes ? lane.notes : [];
+    //       lane.notes.concat(note);
+    //       return {
+    //         ...currentState,
+    //         notes: currentState.notes,
+    //         note: null,
+    //         lane: lane,
+    //         isFetching: true,
+    //         error: null,
+    //         successMsg: null,
+    //         noteToDelete: null,
+    //         newNote: action.note
+    //       }
+
+    case 'ADD_NEW_NOTE_REQUEST_FAILED':
+          return {
+            ...currentState,
+            notes: currentState.notes,
+            note: null,
+            isFetching: true,
+            error: action.error,
+            successMsg: null,
+            noteToDelete: null,
+            newNote: null
+          }
 
     case 'EDITING_NOTE':
           action.note.editing = true;

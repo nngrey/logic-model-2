@@ -2,6 +2,20 @@ import React from 'react';
 import '../styles/Lane.css';
 import LaneHeader from '../containers/LaneHeader';
 import Notes from '../containers/Notes';
+import {DropTarget} from 'react-dnd';
+import ItemTypes from '../constants/itemTypes';
+
+const noteTarget = {
+  hover(targetProps, monitor) {
+    const sourceProps = monitor.getItem();
+    const sourceId = sourceProps.id;
+  }
+};
+
+DropTarget(ItemTypes.NOTE, noteTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isDragging: monitor.isDragging()
+}))
 
 export default class Lane extends React.Component {
   constructor(props){
@@ -29,7 +43,7 @@ export default class Lane extends React.Component {
   render(){
     const lane = this.props.lane;
     const allNotes = this.props.mappedNotesState;
-    const laneNotes = allNotes.filter(note => note.laneId === lane._id);
+    const laneNotes = allNotes.filter(note => lane.notes.includes(note.uuid));
 
     return (
       <div className="lane">

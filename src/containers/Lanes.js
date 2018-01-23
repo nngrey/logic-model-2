@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import * as laneActions from '../actions/laneActions';
 import Lanes from '../components/Lanes';
 
+import {compose} from 'redux';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
+
 // map state from store to props
 const mapStateToProps = (state) => {
   return {
@@ -20,4 +25,10 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Lanes);
+// export default connect(mapStateToProps,mapDispatchToProps)(Lanes);
+
+
+export default compose(
+  DragDropContext(HTML5Backend),
+  connect(mapStateToProps,mapDispatchToProps)
+)(Lanes)

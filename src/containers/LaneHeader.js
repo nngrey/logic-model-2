@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 
   return {
     //you can now say this.props.mappedAppSate
-    mappedLaneState: state.laneState.lane
+    mappedLaneState: state.laneState
   }
 }
 
@@ -17,9 +17,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedEditLane: (id, value) => dispatch(laneActions.editLane(id, value)),
+    mappedEditLane: (data) => dispatch(laneActions.editLane(data)),
     mappedEditingLane: lane => dispatch(laneActions.editingLane(lane)),
-    mappedAddNote: note => dispatch(noteActions.addNewNote(note)),
+    mappedAddNote: data => dispatch(noteActions.addNewNote(data)),
     mappedDeleteLane: note => dispatch(laneActions.deleteLane(note))
   }
 }

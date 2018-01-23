@@ -97,12 +97,12 @@ export const editingLane = (lane) => {
   }
 }
 
-export const editLane = (id, value) => {
+export const editLane = (laneData) => {
     return (dispatch) => {
-      dispatch(editLaneRequest(id));
+      dispatch(editLaneRequest(laneData));
       return fetch(apiUrl, {
         method:'put',
-        body:id
+        body: laneData
       }).then(response => {
         if(response.ok){
           response.json().then(data => {
