@@ -7,11 +7,8 @@ const Note = ({
     connectDragSource, connectDropTarget, isDragging,
     isOver, onMove, id, editing, children, ...props
 }) => {
-
     const dragSource = editing ? a => a : connectDragSource;
-
     return compose(dragSource, connectDropTarget)(
-
       <div style={{
         opacity: isDragging || isOver ? 0 : 1
       }} {...props}>{children}</div>
@@ -24,15 +21,6 @@ const noteSource = {
       id: props.id
     };
   },
-  endDrag(props, monitor) {
-    const item = monitor.getItem()
-    const dropResult = monitor.getDropResult()
-
-    if (dropResult) {
-      // console.log(item);
-      // console.log(dropResult); // eslint-disable-line no-alert
-    }
-  }
 };
 
 const noteTarget = {
@@ -40,8 +28,6 @@ const noteTarget = {
     const targetId = targetProps.id;
     const sourceProps = monitor.getItem();
     const sourceId = sourceProps.id;
-
-    // console.log(targetId);
 
     if(sourceId !== targetId) {
       targetProps.onMove({sourceId, targetId});

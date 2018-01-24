@@ -29,32 +29,30 @@ export default class Notes extends React.Component {
     const targetNote = notes.filter(note => note._id === targetId)[0];
     const sourceLane = lanes.filter(lane => lane._id === sourceNote.laneId)[0]
     const targetLane = lanes.filter(lane => lane._id === targetNote.laneId)[0]
-    const sourceLaneNotes = notes.filter(note => note.laneId === sourceNote.laneId);
-    const targetLaneNotes = notes.filter(note => note.laneId === targetNote.laneId);
-    const sourceNoteIndex = sourceLaneNotes.indexOf(sourceNote);
-    const targetNoteIndex = targetLaneNotes.indexOf(targetNote);
-
-    if(sourceNote.laneId === targetNote.laneId) {
+    // const sourceLaneNotes = notes.filter(note => note.laneId === sourceNote.laneId);
+    // const targetLaneNotes = notes.filter(note => note.laneId === targetNote.laneId);
+    const sourceNoteIndex = sourceLane.notes.indexOf(sourceNote.uuid);
+    const targetNoteIndex = targetLane.notes.indexOf(targetNote.uuid);
+    if(sourceLane._id === targetLane._id) {
+      sourceLane.notes.splice(targetNoteIndex, 0, sourceLane.notes.splice(sourceNoteIndex, 1)[0]);
       const sourceLaneData = new FormData();
-      // move at once to avoid complications
-      sourceLane.notes.splice(sourceNoteIndex, 1);
-      sourceLane.notes.splice(targetNoteIndex, 0, sourceNote.uuid);
       sourceLaneData.append('id', sourceLane._id);
       sourceLaneData.append('notes', sourceLane.notes);
       this.props.mappedEditLane(sourceLaneData);
     } else {
+      // update sourceNote with new laneId
+      const noteData = new FormData();
+      noteData.append('id', sourceNote._id);
+      noteData.append('laneId', targetLane._id);
+      this.editNote(noteData);
       // get rid of the source
       sourceLane.notes.splice(sourceNoteIndex, 1);
-      sourceLane.notes = sourceLane.notes.filter( note => note !== "" );
-      sourceLane.notes = [...new Set(sourceLane.notes)];
       const sourceLaneData = new FormData();
       sourceLaneData.append('id', sourceLane._id);
       sourceLaneData.append('notes', sourceLane.notes);
       this.props.mappedEditLane(sourceLaneData);
       // and move it to target
       targetLane.notes.splice(targetNoteIndex, 0, sourceNote.uuid);
-      targetLane.notes = targetLane.notes.filter( note => note !== "" );
-      targetLane.notes = [...new Set(targetLane.notes)];
       const targetLaneData = new FormData();
       targetLaneData.append('id', targetLane._id);
       targetLaneData.append('notes', targetLane.notes);
@@ -64,12 +62,26 @@ export default class Notes extends React.Component {
 
   render(){
     const notes = this.props.notes;
+    const noteIds = this.props.noteIds;
+
+    let laneNotes = [];
+    if(notes.length > 0 && noteIds){
+      for (var i=0; i < noteIds.length; i++) {
+        let note = notes.filter(note => note.uuid === noteIds[i])[0];
+        laneNotes.push(note);
+      }
+    }
+    if(laneNotes.length == notes.length) {
+      laneNotes = laneNotes || notes;
+    } else {
+      laneNotes = notes;
+    }
+
     return (
       <div>
         <ul className="notes">
-          {notes.map((note) =>
+          {laneNotes.map((note) =>
             <li key={note._id}>
-
               <Note className="note" id={note._id}
                 onClick={() => this.editingNote(note)}
                 onMove={({sourceId, targetId}) =>

@@ -7,8 +7,8 @@ import ItemTypes from '../constants/itemTypes';
 
 const noteTarget = {
   hover(targetProps, monitor) {
-    const sourceProps = monitor.getItem();
-    const sourceId = sourceProps.id;
+    // const sourceProps = monitor.getItem();
+    // const sourceId = sourceProps.id;
   }
 };
 
@@ -43,18 +43,19 @@ export default class Lane extends React.Component {
   render(){
     const lane = this.props.lane;
     const allNotes = this.props.mappedNotesState;
-    const laneNotes = allNotes.filter(note => lane.notes.includes(note.uuid));
+    let laneNotes = allNotes.filter(note => lane.notes.includes(note.uuid));
 
-    return (
-      <div className="lane">
-        <LaneHeader lane={lane} />
-        <Notes
-          notes={laneNotes}
-          onEditing={this.editingNote}
-          onEdit={this.editNote}
-          onDelete={this.deleteNote}
-          lane={lane}/>
-      </div>
-    );
+      return (
+        <div className="lane">
+          <LaneHeader lane={lane} />
+          <Notes
+            notes={laneNotes}
+            noteIds={lane.notes}
+            onEditing={this.editingNote}
+            onEdit={this.editNote}
+            onDelete={this.deleteNote}
+            lane={lane}/>
+        </div>
+      );
   };
 }

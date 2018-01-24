@@ -1,4 +1,4 @@
-import configureStore from '../store/configureStore';
+// import configureStore from '../store/configureStore';
 const apiUrl = "/api/";
 
 export const addNewNote = (noteData) => {
@@ -22,7 +22,7 @@ export const addNewNote = (noteData) => {
 }
 
 export const addNewNoteRequest = (note) => {
-  const store = configureStore();
+  // const store = configureStore();
   return {
     type: 'ADD_NEW_NOTE_REQUEST',
     note
