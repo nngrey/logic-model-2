@@ -29,8 +29,6 @@ export default class Notes extends React.Component {
     const targetNote = notes.filter(note => note._id === targetId)[0];
     const sourceLane = lanes.filter(lane => lane._id === sourceNote.laneId)[0]
     const targetLane = lanes.filter(lane => lane._id === targetNote.laneId)[0]
-    // const sourceLaneNotes = notes.filter(note => note.laneId === sourceNote.laneId);
-    // const targetLaneNotes = notes.filter(note => note.laneId === targetNote.laneId);
     const sourceNoteIndex = sourceLane.notes.indexOf(sourceNote.uuid);
     const targetNoteIndex = targetLane.notes.indexOf(targetNote.uuid);
     if(sourceLane._id === targetLane._id) {
