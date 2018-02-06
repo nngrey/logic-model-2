@@ -22,6 +22,11 @@ export default class Notes extends React.Component {
     this.props.mappedEditNote(noteToEdit);
   }
 
+  findNote(noteID){
+    const notes = this.props.notes;
+    return notes.filter(note => note.uuid === noteID)[0];
+  }
+
   move(sourceId, targetId){
     const lanes = this.props.mappedLaneState.lanes;
     const notes = this.props.mappedNoteState.notes;
@@ -65,11 +70,11 @@ export default class Notes extends React.Component {
     let laneNotes = [];
     if(notes.length > 0 && noteIds){
       for (var i=0; i < noteIds.length; i++) {
-        let note = notes.filter(note => note.uuid === noteIds[i])[0];
+        let note = this.findNote(noteIds[i]);
         laneNotes.push(note);
       }
     }
-    if(laneNotes.length == notes.length) {
+    if(laneNotes.length === notes.length) {
       laneNotes = laneNotes || notes;
     } else {
       laneNotes = notes;

@@ -1,4 +1,3 @@
-// ./react-redux-client/src/containers/Todo.js
 import { connect } from 'react-redux';
 import * as noteActions from '../actions/noteActions';
 import Lane from '../components/Lane';
