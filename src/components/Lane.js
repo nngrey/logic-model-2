@@ -5,17 +5,18 @@ import Notes from '../containers/Notes';
 import {DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
 
-const noteTarget = {
-  hover(targetProps, monitor) {
-    // const sourceProps = monitor.getItem();
-    // const sourceId = sourceProps.id;
-  }
-};
-
-DropTarget(ItemTypes.NOTE, noteTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isDragging: monitor.isDragging()
-}))
+// const noteTarget = {
+//   hover(targetProps, monitor) {
+//     const sourceProps = monitor.getItem();
+//     console.log(sourceProps);
+//     const sourceId = sourceProps.id;
+//   }
+// };
+//
+// DropTarget(ItemTypes.LANE, noteTarget, (connect, monitor) => ({
+//   connectDropTarget: connect.dropTarget(),
+//   isDragging: monitor.isDragging()
+// }))
 
 export default class Lane extends React.Component {
   constructor(props){

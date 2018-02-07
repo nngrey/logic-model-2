@@ -12,6 +12,13 @@ export default class Notes extends React.Component {
 
   deleteNote(noteToDelete){
     this.props.mappedDeleteNote(noteToDelete);
+    const lanes = this.props.mappedLaneState.lanes;
+    const lane = lanes.filter(lane => lane._id === noteToDelete.laneId)[0]
+    const noteIds = lane.notes.filter(note => note !== noteToDelete.uuid)
+    const laneData = new FormData();
+    laneData.append('id', lane._id);
+    laneData.append('notes', noteIds);
+    this.props.mappedEditLane(laneData);
   }
 
   editingNote(noteToEdit){
