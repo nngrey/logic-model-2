@@ -87,6 +87,7 @@ export default class Notes extends React.Component {
       laneNotes = notes;
     }
 
+    // console.log(laneNotes);
     return (
       <div>
         <ul className="notes">

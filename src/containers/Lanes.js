@@ -1,6 +1,7 @@
 // ./react-redux-client/src/containers/Todo.js
 import { connect } from 'react-redux';
 import * as laneActions from '../actions/laneActions';
+import * as noteActions from '../actions/noteActions';
 import Lanes from '../components/Lanes';
 
 import {compose} from 'redux';
@@ -12,6 +13,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 const mapStateToProps = (state) => {
   return {
     //you can now say this.props.mappedAppSate
+    mappedNotesState: state.noteState.notes,
     mappedLanesState: state.laneState.lanes
   }
 }
@@ -20,8 +22,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
+    fetchNotes: () => dispatch(noteActions.fetchNotes()),
     fetchLanes: () => dispatch(laneActions.fetchLanes()),
-    mappedAddLane: lane => dispatch(laneActions.addNewLane(lane))
+    mappedAddLane: lane => dispatch(laneActions.addNewLane(lane)),
+    mappedEditNote: (data) => dispatch(noteActions.editNote(data)),
+    mappedEditLane: (data) => dispatch(laneActions.editLane(data)),
   }
 }
 
