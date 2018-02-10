@@ -45,6 +45,9 @@ export default class Notes extends React.Component {
     const targetNoteIndex = targetLane.notes.indexOf(targetNote.uuid);
     if(sourceLane._id === targetLane._id) {
       sourceLane.notes.splice(targetNoteIndex, 0, sourceLane.notes.splice(sourceNoteIndex, 1)[0]);
+      console.log(sourceNote);
+      console.log(targetNote);
+      console.log(sourceLane.notes);
       const sourceLaneData = new FormData();
       sourceLaneData.append('id', sourceLane._id);
       sourceLaneData.append('notes', sourceLane.notes);
@@ -81,13 +84,21 @@ export default class Notes extends React.Component {
         laneNotes.push(note);
       }
     }
+
+    laneNotes = laneNotes.filter(Boolean);
+
+
     if(laneNotes.length === notes.length) {
       laneNotes = laneNotes || notes;
     } else {
       laneNotes = notes;
     }
 
+
+    // console.log("*************laneNotes")
     // console.log(laneNotes);
+    // console.log("*************notes")
+    // console.log(notes);
     return (
       <div>
         <ul className="notes">

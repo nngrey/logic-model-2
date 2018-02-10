@@ -32,19 +32,19 @@ export default class Lanes extends React.Component {
     const targetLane = lanes.filter(lane => lane._id === targetId)[0]
     const sourceNoteIndex = sourceLane.notes.indexOf(sourceNote.uuid);
     const targetNoteIndex = 0;
-    console.log(sourceId);
-    console.log(targetId);
-    console.log(sourceLane);
-    console.log(targetLane);
-    if(sourceLane._id === targetLane._id) {
-
-      // console.log(sourceLane);
-      sourceLane.notes.splice(targetNoteIndex, 0, sourceLane.notes.splice(sourceNoteIndex, 1)[0]);
-      const sourceLaneData = new FormData();
-      sourceLaneData.append('id', sourceLane._id);
-      sourceLaneData.append('notes', sourceLane.notes);
-      this.props.mappedEditLane(sourceLaneData);
-    } else {
+    // console.log(sourceId);
+    // console.log(targetId);
+    // console.log(sourceLane);
+    // console.log(targetLane);
+    // if(sourceLane._id === targetLane._id) {
+      // // console.log(sourceLane);
+      // sourceLane.notes.splice(targetNoteIndex, 0, sourceLane.notes.splice(sourceNoteIndex, 1)[0]);
+      // const sourceLaneData = new FormData();
+      // sourceLaneData.append('id', sourceLane._id);
+      // sourceLaneData.append('notes', sourceLane.notes);
+      // this.props.mappedEditLane(sourceLaneData);
+    // } else {
+    //   alert('hi');
       // update sourceNote with new laneId
       const noteData = new FormData();
       noteData.append('id', sourceNote._id);
@@ -62,7 +62,7 @@ export default class Lanes extends React.Component {
       targetLaneData.append('id', targetLane._id);
       targetLaneData.append('notes', targetLane.notes);
       this.props.mappedEditLane(targetLaneData);
-    }
+    // }
   }
 
   render(){

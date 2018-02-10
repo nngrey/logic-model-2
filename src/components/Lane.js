@@ -50,13 +50,13 @@ const Lane = ({
 }
 
 const noteTarget = {
-  drop(targetProps, monitor) {
+  hover(targetProps, monitor) {
     const targetId = targetProps.lane._id;
     const sourceProps = monitor.getItem();
     const sourceId = sourceProps.id;
     const emptyLane = (targetProps.lane.notes.filter(Boolean).length === 0)
 
-    console.log(targetProps.lane.notes);
+    // console.lsog(targetProps.lane.notes);
     if(sourceId !== targetId && emptyLane) {
       // alert('ho');
       targetProps.onMove({sourceId, targetId});
