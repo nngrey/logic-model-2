@@ -123,8 +123,6 @@ export const editingNote = (note) => {
 }
 
 export const editNote = (data) => {
-    // console.log(id);
-    // console.log(value);
     return (dispatch) => {
       dispatch(editNoteRequest(data));
       return fetch(apiUrl, {

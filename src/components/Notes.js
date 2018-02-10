@@ -1,7 +1,6 @@
 import React from 'react';
 import Note from './Note';
 import Editable from './Editable';
-
 import '../styles/Notes.css';
 
 export default class Notes extends React.Component {
@@ -43,11 +42,10 @@ export default class Notes extends React.Component {
     const targetLane = lanes.filter(lane => lane._id === targetNote.laneId)[0]
     const sourceNoteIndex = sourceLane.notes.indexOf(sourceNote.uuid);
     const targetNoteIndex = targetLane.notes.indexOf(targetNote.uuid);
+
+    // move the note within its current lane
     if(sourceLane._id === targetLane._id) {
       sourceLane.notes.splice(targetNoteIndex, 0, sourceLane.notes.splice(sourceNoteIndex, 1)[0]);
-      console.log(sourceNote);
-      console.log(targetNote);
-      console.log(sourceLane.notes);
       const sourceLaneData = new FormData();
       sourceLaneData.append('id', sourceLane._id);
       sourceLaneData.append('notes', sourceLane.notes);
@@ -58,13 +56,13 @@ export default class Notes extends React.Component {
       noteData.append('id', sourceNote._id);
       noteData.append('laneId', targetLane._id);
       this.editNote(noteData);
-      // get rid of the source
+      // clean up the source lane
       sourceLane.notes.splice(sourceNoteIndex, 1);
       const sourceLaneData = new FormData();
       sourceLaneData.append('id', sourceLane._id);
       sourceLaneData.append('notes', sourceLane.notes);
       this.props.mappedEditLane(sourceLaneData);
-      // and move it to target
+      // move the note to the target lane
       targetLane.notes.splice(targetNoteIndex, 0, sourceNote.uuid);
       const targetLaneData = new FormData();
       targetLaneData.append('id', targetLane._id);
@@ -94,11 +92,6 @@ export default class Notes extends React.Component {
       laneNotes = notes;
     }
 
-
-    // console.log("*************laneNotes")
-    // console.log(laneNotes);
-    // console.log("*************notes")
-    // console.log(notes);
     return (
       <div>
         <ul className="notes">
