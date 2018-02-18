@@ -1,4 +1,3 @@
-// import configureStore from '../store/configureStore';
 const apiUrl = "/api/";
 
 export const addNewNote = (noteData) => {
@@ -29,29 +28,6 @@ export const addNewNoteRequest = (note) => {
   }
 }
 
-
-// export const attachToLane = (note, laneState) => {
-//   return {
-//     type: 'ATTACH_TO_LANE',
-//     note: note,
-//     laneState: laneState
-//   }
-// }
-
-//   this.setState({
-//     lanes: this.lanes.map(lane => {
-//       if(lane.notes.includes(noteId)) {
-//         lane.notes = lane.notes.filter(note => note !== noteId);
-//       }
-//
-//       if(lane.id === laneId) {
-//         lane.notes = lane.notes.concat([noteId]);
-//       }
-//
-//       return lane;
-//     })
-//   });
-// }
 
 export const addNewNoteRequestSuccess = (note,message) => {
   return {
@@ -206,7 +182,6 @@ export const deleteNoteFailed = (error) => {
     error
   }
 }
-
 
 
 export const detachFromLane = (laneId, noteId) => {

@@ -54,7 +54,7 @@ export const fetchLanes = () => {
     return fetch(apiUrl)
       .then(response => {
         if(response.ok){
-          response.json().then(data => {
+          response.json().then(data => {console.log(data.lanes);
             dispatch(fetchLanesSuccess(data.lanes,data.message));
           })
         }
