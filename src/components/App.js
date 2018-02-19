@@ -18,7 +18,7 @@ export default class App extends React.Component {
                <NavItem eventKey={1}>About</NavItem>
             </LinkContainer>
             <LinkContainer to={{ pathname: '/signin', query: {  } }}>
-               <NavItem eventKey={1}>Sign in</NavItem>
+               <NavItem eventKey={2}>Sign in</NavItem>
             </LinkContainer>
           </Nav>
         </Navbar>

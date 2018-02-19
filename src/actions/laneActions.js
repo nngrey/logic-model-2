@@ -1,6 +1,7 @@
 const apiUrl = "/api/lanes/";
 
 export const addNewLane = (laneData) => {
+  console.log(laneData);
   return (dispatch) => {
     dispatch(addNewLaneRequest(laneData));
     return fetch(apiUrl, {

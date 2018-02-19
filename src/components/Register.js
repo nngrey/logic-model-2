@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
 
-class Signin extends Component {
+class Register extends Component {
   submit = (values) => {
     console.log(values);
   }
 
-  signIn = (values) => {
-    this.props.mappedSignIn(values);
+  register = (values) => {
+    console.log(values);
+    const data = new FormData();
+    data.append('email', values.email);
+    data.append('password', values.password);
+    data.append('passwordConf', values['password-confirmation']);
+    this.props.mappedRegister(data);
   }
 
   render() {
@@ -17,8 +20,8 @@ class Signin extends Component {
     return (
       <div className="form">
         <div className="container">
-          <h2>Sign In</h2>
-          <form onSubmit={ handleSubmit(this.signIn) }>
+          <h2>Register</h2>
+          <form onSubmit={ handleSubmit(this.register) }>
             <Field name="email"
                   component="input"
                   type="text"
@@ -29,11 +32,13 @@ class Signin extends Component {
                   type="password"
                   placeholder="Password"
             />
-            <button type="submit" className="blue">Sign In</button>
+            <Field name="password-confirmation"
+                  component="input"
+                  type="password"
+                  placeholder="Confirm Password"
+            />
+            <button type="submit" className="blue">Register</button>
           </form>
-          <LinkContainer to={{ pathname: '/register', query: {  } }}>
-          <NavItem eventKey={3}>Register</NavItem>
-          </LinkContainer>
         </div>
       </div>
     );
@@ -41,5 +46,5 @@ class Signin extends Component {
 }
 
 export default reduxForm({
-  form: 'signin'
-})(Signin);
+  form: 'register'
+})(Register);

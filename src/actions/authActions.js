@@ -23,6 +23,52 @@
 //   };
 // }
 
+
+const registerUrl = "/api/register/";
+
+export const register = (values) => {
+  console.log(values);
+  return (dispatch) => {
+    dispatch(registerRequest(values));
+    return fetch(registerUrl, {
+      method:'post',
+      body: values,
+    }).then(response => {
+      if(response.ok){
+        response.json().then(data => {console.log(data);
+          dispatch(registerRequestSuccess(data))
+        })
+      }
+      else{
+        response.json().then(error => {
+          dispatch(registerRequestFailed(error))
+        })
+      }
+    })
+  }
+}
+
+export const registerRequest = (values) => {
+  return {
+    type: 'REGISTER_REQUEST',
+    values
+  }
+}
+
+export const registerRequestSuccess = (data) => {
+  return {
+    type: 'AUTHENTICATED',
+    data
+  }
+}
+
+export const registerRequestFailed = (data) => {
+  return {
+    type: 'AUTHENTICATION_ERROR',
+    data
+  }
+}
+
 const apiUrl = "/api/sign_in/";
 
 export const signIn = (values) => {
@@ -45,7 +91,6 @@ export const signIn = (values) => {
     })
   }
 }
-
 
 export const signInRequest = (values) => {
   return {
