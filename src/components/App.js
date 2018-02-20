@@ -41,9 +41,7 @@ export default class App extends React.Component {
               <a href="/#">Home</a>
             </Navbar.Brand>
           </Navbar.Header>
-          <Nav>
-            {this.navbarLinks()}
-          </Nav>
+          {this.navbarLinks()}
         </Navbar>
         <div>
           {this.props.children}
