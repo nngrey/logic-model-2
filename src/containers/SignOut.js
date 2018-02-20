@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as authActions from '../actions/authActions';
-import SignIn from '../components/SignIn';
+import SignOut from '../components/SignOut';
 
 
 // map state from store to props
@@ -16,8 +16,8 @@ const mapStateToProps = (state,ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedSignIn: (values) => dispatch(authActions.signIn(values))
+    mappedSignOut: () => dispatch(authActions.signOut())
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps,mapDispatchToProps)(SignOut);

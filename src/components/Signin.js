@@ -3,13 +3,19 @@ import { Field, reduxForm } from 'redux-form';
 import { NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 
-class Signin extends Component {
-  submit = (values) => {
-    console.log(values);
+class SignIn extends Component {
+
+  componentDidUpdate(){
+    if(this.props.mappedAuthState.authenticated){
+      this.props.router.push('/logic-models');
+    }
   }
 
   signIn = (values) => {
-    this.props.mappedSignIn(values);
+    const formData = new FormData();
+    formData.append('signInEmail', values.email);
+    formData.append('signInPassword', values.password);
+    this.props.mappedSignIn(formData);
   }
 
   render() {
@@ -31,8 +37,8 @@ class Signin extends Component {
             />
             <button type="submit" className="blue">Sign In</button>
           </form>
-          <LinkContainer to={{ pathname: '/register', query: {  } }}>
-          <NavItem eventKey={3}>Register</NavItem>
+          <LinkContainer to={{ pathname: '/sign-in', query: {  } }}>
+          <NavItem eventKey={1}>Register</NavItem>
           </LinkContainer>
         </div>
       </div>
@@ -42,4 +48,4 @@ class Signin extends Component {
 
 export default reduxForm({
   form: 'signin'
-})(Signin);
+})(SignIn);

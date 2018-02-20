@@ -4,6 +4,34 @@ import { LinkContainer } from 'react-router-bootstrap';
 import '../styles/App.css';
 
 export default class App extends React.Component {
+  navbarLinks() {
+    console.log(this.props);
+    if (this.props.mappedAuthState.authenticated) {
+      return (
+        <Nav>
+          <LinkContainer to={{ pathname: '/about', query: {  } }}>
+             <NavItem eventKey={1}>About</NavItem>
+          </LinkContainer>
+
+          <LinkContainer to={{ pathname: '/sign-out', query: {  } }}>
+             <NavItem eventKey={2}>Sign out</NavItem>
+          </LinkContainer>
+        </Nav>
+      )
+    }
+    return (
+      <Nav>
+        <LinkContainer to={{ pathname: '/about', query: {  } }}>
+           <NavItem eventKey={1}>About</NavItem>
+        </LinkContainer>
+
+        <LinkContainer to={{ pathname: '/sign-in', query: {  } }}>
+           <NavItem eventKey={2}>Sign in</NavItem>
+        </LinkContainer>
+      </Nav>
+    )
+  }
+
   render(){
     return(
       <div>
@@ -14,12 +42,7 @@ export default class App extends React.Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <LinkContainer to={{ pathname: '/about', query: {  } }}>
-               <NavItem eventKey={1}>About</NavItem>
-            </LinkContainer>
-            <LinkContainer to={{ pathname: '/signin', query: {  } }}>
-               <NavItem eventKey={2}>Sign in</NavItem>
-            </LinkContainer>
+            {this.navbarLinks()}
           </Nav>
         </Navbar>
         <div>

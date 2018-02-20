@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import App from '../components/App';
-import * as noteActions from '../actions/noteActions';
+// import * as noteActions from '../actions/noteActions';
 
 // map state from store to props
 const mapStateToProps = (state) => {
   return {
     //you can now say this.props.mappedAppSate
-    mappedAppState: state.appState
+    mappedAppState: state.appState,
+    mappedAuthState: state.authState
   }
 }
 

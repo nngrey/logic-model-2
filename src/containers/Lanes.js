@@ -11,6 +11,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 // map state from store to props
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     //you can now say this.props.mappedAppSate
     mappedNotesState: state.noteState.notes,

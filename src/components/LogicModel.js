@@ -2,7 +2,7 @@ import React from 'react';
 import Lane from '../containers/Lane';
 import '../styles/Lane.css';
 
-export default class Lanes extends React.Component {
+export default class LogicModel extends React.Component {
   constructor(props){
   super(props);
   this.addLane = this.addLane.bind(this);

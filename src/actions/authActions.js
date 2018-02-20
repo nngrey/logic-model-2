@@ -1,42 +1,15 @@
-// import axios from 'axios';
-
-// export const AUTHENTICATED = 'authenticated_user';
-// export const UNAUTHENTICATED = 'unauthenticated_user';
-// export const AUTHENTICATION_ERROR = 'authentication_error';
-//
-// const URL = 'http://www.sample-website.com';
-//
-// export function signInAction({ email, password }, history) {
-//   return async (dispatch) => {
-//     try {
-//       const res = await axios.post(`${URL}/signin`, { email, password });
-//
-//       dispatch({ type: AUTHENTICATED });
-//       localStorage.setItem('user', res.data.token);
-//       history.push('/secret');
-//     } catch(error) {
-//       dispatch({
-//         type: AUTHENTICATION_ERROR,
-//         payload: 'Invalid email or password'
-//       });
-//     }
-//   };
-// }
-
-
 const registerUrl = "/api/register/";
 
-export const register = (values) => {
-  console.log(values);
+export const register = (formData) => {
   return (dispatch) => {
-    dispatch(registerRequest(values));
+    dispatch(registerRequest(formData));
     return fetch(registerUrl, {
       method:'post',
-      body: values,
+      body: formData,
     }).then(response => {
       if(response.ok){
         response.json().then(data => {console.log(data);
-          dispatch(registerRequestSuccess(data))
+          dispatch(registerRequestSuccess(data.user, data.message))
         })
       }
       else{
@@ -48,39 +21,40 @@ export const register = (values) => {
   }
 }
 
-export const registerRequest = (values) => {
+export const registerRequest = (data) => {
   return {
     type: 'REGISTER_REQUEST',
-    values
-  }
-}
-
-export const registerRequestSuccess = (data) => {
-  return {
-    type: 'AUTHENTICATED',
     data
   }
 }
 
-export const registerRequestFailed = (data) => {
+export const registerRequestSuccess = (user, message) => {
   return {
-    type: 'AUTHENTICATION_ERROR',
-    data
+    type: 'REGISTER_REQUEST_SUCCESS',
+    user: user,
+    message: message
   }
 }
 
-const apiUrl = "/api/sign_in/";
+export const registerRequestFailed = (error) => {
+  return {
+    type: 'REGISTER_REQUEST_ERROR',
+    error
+  }
+}
 
-export const signIn = (values) => {
+const apiUrl = "/api/sign-in/";
+
+export const signIn = (formData) => {
   return (dispatch) => {
-    dispatch(signInRequest(values));
+    dispatch(signInRequest(formData));
     return fetch(apiUrl, {
       method:'post',
-      body: values,
+      body: formData,
     }).then(response => {
       if(response.ok){
         response.json().then(data => {console.log(data);
-          dispatch(signInRequestSuccess(data))
+          dispatch(signInRequestSuccess(data.user, data.message))
         })
       }
       else{
@@ -92,23 +66,67 @@ export const signIn = (values) => {
   }
 }
 
-export const signInRequest = (values) => {
+export const signInRequest = (data) => {
   return {
     type: 'SIGNIN_REQUEST',
-    values
+    data
   }
 }
 
-export const signInRequestSuccess = (data) => {
+export const signInRequestSuccess = (user, message) => {
   return {
     type: 'AUTHENTICATED',
-    data
+    user: user,
+    message: message
   }
 }
 
-export const signInRequestFailed = (data) => {
+export const signInRequestFailed = (error) => {
   return {
     type: 'AUTHENTICATION_ERROR',
-    data
+    error
+  }
+}
+
+const signOutUrl = "/api/sign-out"
+
+export const signOut = () => {
+  return (dispatch) => {
+    dispatch(signOutRequest());
+    return fetch(signOutUrl, {
+      method:'get'
+    }).then(response => {
+      if(response.ok){
+        response.json().then(data => {console.log(data);
+          dispatch(signOutRequestSuccess(data.message))
+        })
+      }
+      else{
+        response.json().then(error => {
+          dispatch(signOutRequestFailed(error))
+        })
+      }
+    })
+  }
+}
+
+export const signOutRequest = () => {
+  return {
+    type: 'SIGNOUT_REQUEST',
+  }
+}
+
+export const signOutRequestSuccess = (user, message) => {
+  return {
+    type: 'UNAUTHENTICATED',
+    user: user,
+    message: message
+  }
+}
+
+export const signOutRequestFailed = (error) => {
+  return {
+    type: 'SIGNOUT_ERROR',
+    error
   }
 }

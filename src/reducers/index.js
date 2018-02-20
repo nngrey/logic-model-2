@@ -10,6 +10,6 @@ export default combineReducers({
   noteState: noteReducer,
   laneState: laneReducer,
   form: formReducer,
-  auth: authReducer,
+  authState: authReducer,
   routing
 })
